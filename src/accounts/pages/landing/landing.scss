@@ -1,0 +1,40 @@
+.landing-content{
+	// background: linear-gradient(-179deg, #FE8C00 0%, #F83600 100%);
+	background-image:url('/assets/imgs/landing_background.png');
+	background-repeat:no-repeat;
+	background-position: center center;
+	background-size:cover;
+}
+.landing-footer{
+
+	.signup-btn{
+		background-color: white;
+		color:#FC3F1B;
+		height: 55px;
+		width: 70%;
+	}
+	.signup-btn:hover{
+		background-color: white !important;
+	}
+	.have-account {
+		color:white;
+	}
+	.login {
+		padding-bottom: 40px;
+
+		.login-btn {
+			background-color: Transparent;
+			background-repeat:no-repeat;
+			cursor:pointer;
+			overflow: hidden;
+			outline:none;
+			border: 1px solid white;/* this is for button border*/
+			color:white;
+			height: 55px;
+			width: 70%;
+		}
+		.login-btn:hover {
+			background-color: Transparent !important;
+		}
+	}
+}

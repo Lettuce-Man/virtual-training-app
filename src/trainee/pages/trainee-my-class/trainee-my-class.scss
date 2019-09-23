@@ -1,0 +1,25 @@
+.card-background-content {
+
+  .class-list {
+    padding-top: 30px;
+
+    .class {
+      padding-left: 10px;
+      padding-right: 10px;
+      margin-bottom: 0px;
+
+      .class-simple {
+        //override the height of the common component in this view
+        height:190px;
+        .time{
+          padding-top:40px;
+        }
+        .title{
+          padding-top:35px;
+          font-size: 20px;
+        }
+      }
+    }
+
+  }
+}

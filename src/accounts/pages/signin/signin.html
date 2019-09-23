@@ -1,0 +1,77 @@
+<ion-content class="page-signin">
+  <ion-grid>
+    <ion-row class="back" text-center>
+      <ion-col col-12>
+        <div class="go-back-btn" (click)="onGoBack()">
+            <img src="assets/imgs/back-white.png">
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-list >
+    <form novalidate (ngSubmit)="login()" [formGroup]="signupform">
+      <div class="input-row">
+        <ion-item no-lines class="input-item">
+          <ion-label floating>Email</ion-label>
+          <ion-input type="text" [(ngModel)]="userData.email" formControlName="email" [class.error-input]="!signupform.controls.email.valid && signupform.controls.email.dirty"></ion-input>
+        </ion-item>
+        <ion-item class="input-item" no-lines *ngIf="( signupform.get('email').hasError('required') ) && signupform.get('email').touched">
+          <div class="error-text" *ngIf="signupform.get('email').hasError('required') && signupform.get('email').touched">
+            <ion-icon name="alert"></ion-icon>Please input your email
+          </div>
+        </ion-item>
+      </div>
+      <div class="input-row">
+        <ion-item no-lines class="input-item">
+          <ion-label floating>Password</ion-label>
+          <ion-input type="password" [(ngModel)]="userData.password" formControlName="password" [class.error-input]="!signupform.controls.password.valid && signupform.controls.password.dirty"></ion-input>
+        </ion-item>
+
+        <ion-item class="input-item" no-lines *ngIf="signupform.get('password').hasError('required') && signupform.get('password').touched">
+          <div class="error-text" *ngIf="signupform.get('password').hasError('required') && signupform.get('password').touched">
+            <ion-icon name="alert"></ion-icon>Please enter your password
+          </div>
+        </ion-item>
+      </div>
+      <div class="row-signup">
+          <button class="login-btn" type="submit" ion-button>Log In</button>
+      </div>
+    </form>
+  </ion-list>
+
+    <!-- <ion-grid>
+      <ion-row class="back" text-center>
+  			<ion-col col-12>
+          <div class="go-back-btn" (click)="onGoBack()">
+              <img src="assets/imgs/back-white.png">
+          </div>
+  			</ion-col>
+  		</ion-row>
+      <ion-row class="email row-inputs" text-center>
+        <ion-col col-12>
+            <input class="input-border"
+              type="text"
+              [(ngModel)]="details.username" name="name"
+              placeholder="Name"
+              #username="ngModel"
+              required>
+        </ion-col>
+      </ion-row>
+      <ion-row class="pass row-inputs" text-center>
+        <ion-col col-12>
+            <input class="input-border"
+              type="password"
+              [(ngModel)]="details.password" name="password"
+              placeholder="Password"
+              #password="ngModel"
+              required
+              [minlength]="8">
+        </ion-col>
+      </ion-row>
+      <ion-row class="login row-inputs" text-center>
+        <ion-col col-12>
+          <button class="login-btn" type="submit" ion-button (click)="login()">Log In</button>
+        </ion-col>
+      </ion-row>
+  </ion-grid> -->
+</ion-content>

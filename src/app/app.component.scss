@@ -1,0 +1,50 @@
+.custom-toast {
+  .toast-container {
+    background-color: white;
+  }
+  .toast-message {
+    color: black;
+  }
+  .toast-button {
+    background-color: white;
+    color: #FF4C00;
+  }
+}
+.nav-menu-contents{
+  .toolbar-background {
+	  background-color: #313732;
+	  // color:white;
+	}
+  .scroll-content{
+    background-color: #313732;
+    color:white;
+  }
+
+  .nav-menu-item{
+
+    &.selected{
+       background-color: white;
+       color:#FF4C00;
+    }
+    &.unselected{
+      background-color: #313732;
+      color:white;
+    }
+  }
+  .nav-menu-logout {
+    background-color:#FF4C00;
+    color:white;
+  }
+	.title {
+		color:white;
+	}
+	.menu-button {
+		color:white;
+	}
+	.toolbar-title{
+		color:white;
+	}
+  ion-footer {
+    background-color: #313732;
+  }
+}

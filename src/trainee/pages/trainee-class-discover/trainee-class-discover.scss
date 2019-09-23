@@ -1,0 +1,19 @@
+.class-discover-content {
+
+  .class-list {
+    padding-top: 30px;
+
+    .class {
+      padding-left: 10px;
+      padding-right: 10px;
+      margin-bottom: -8px;
+
+      .class-details {
+        //override the height of the common component in this view
+        height:210px;
+      }
+    }
+
+  }
+
+}

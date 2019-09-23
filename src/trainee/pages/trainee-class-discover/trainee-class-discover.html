@@ -1,0 +1,13 @@
+<ion-header>
+  <nav-menu-component [title]="'Discover'"></nav-menu-component>
+</ion-header>
+
+  <ion-content class="class-discover-content">
+
+    <div class="class-list">
+    <ion-list class="class" (click)="viewClass(class)" *ngFor="let class of allClasses">
+      <class-summary-component  [classModel]="class" [showBackButton]="false" [showLevel]="true" [view]="'detail'"></class-summary-component>
+    </ion-list >
+    </div>
+
+  </ion-content>

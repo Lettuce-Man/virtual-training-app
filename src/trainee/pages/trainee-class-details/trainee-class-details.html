@@ -1,0 +1,85 @@
+<ion-content class="class-details-content">
+	<ion-grid>
+		<class-summary-component [classModel]="session" [showBackButton]="true" [showLevel]="false" [view]="'detail'"></class-summary-component>
+
+		<ion-row class="details">
+			<ion-col col-4 [ngSwitch]="session.level">
+				<ion-label class="title">Level</ion-label>
+				<div class="contents" *ngSwitchCase="1">
+					<img class="dumbbell" src="../../../assets/imgs/dumbbell_gray_full.png">
+					<img class="dumbbell" src="../../../assets/imgs/dumbbell_gray_border.png">
+					<img class="dumbbell" src="../../../assets/imgs/dumbbell_gray_border.png">
+				</div>
+				<div class="contents" *ngSwitchCase="2">
+					<img class="dumbbell" src="../../../assets/imgs/dumbbell_gray_full.png">
+					<img class="dumbbell" src="../../../assets/imgs/dumbbell_gray_full.png">
+					<img class="dumbbell" src="../../../assets/imgs/dumbbell_gray_border.png">
+				</div>
+				<div class="contents" *ngSwitchCase="3">
+					<img class="dumbbell" src="../../../assets/imgs/dumbbell_gray_full.png">
+					<img class="dumbbell" src="../../../assets/imgs/dumbbell_gray_full.png">
+					<img class="dumbbell" src="../../../assets/imgs/dumbbell_gray_full.png">
+				</div>
+				<div class="contents" *ngSwitchDefault>{{ session.level }}</div>
+
+			</ion-col>
+			<ion-col col-4>
+				<ion-label class="title">Calories</ion-label>
+				<div class="contents">{{ session.calories }}</div>
+			</ion-col>
+			<ion-col col-4>
+				<ion-label class="title">Equipment</ion-label>
+				<div class="contents">{{ equipmentStr }}</div>
+			</ion-col>
+		</ion-row>
+
+		<ion-row class="trainer">
+			<ion-col col-auto class="image">
+				<img [src]="session.trainer.image" width="80" height="80">
+
+			</ion-col>
+			<ion-col col-auto class="contents">
+				<p class="name">{{ session.trainer.name }}</p>
+				<p>{{ session.trainer.description }}</p>
+				<p>{{ session.trainer.experience }}</p>
+				<p>{{ session.trainer.specialization }}</p>
+			</ion-col>
+		</ion-row>
+
+		<ion-row class="description">
+			<ion-col col-12>
+				{{ session.description }}
+			</ion-col>
+		</ion-row>
+
+		<ion-row class="target">
+			<ion-col col-12>
+				<ion-row>
+					<ion-col col-12>
+						<ion-label class="title">Target</ion-label>
+					</ion-col>
+				</ion-row>
+				<ion-row>
+					<ion-col col-auto *ngFor="let target of session.targets">
+						<img width="60" height="60" src="{{'assets/imgs/target-'+target.areaType+'.png'}}">
+						<ion-label class="name">{{target.displayName}}</ion-label>
+					</ion-col>
+				</ion-row>
+			</ion-col>
+		</ion-row>
+	</ion-grid>
+
+
+</ion-content>
+
+<ion-footer>
+	<ion-grid class="details-footer">
+		<ion-row>
+			<ion-col col-12>
+				<!-- If we have not registered -->
+				<button class="button-register" *ngIf="isUserRegistered === false" block ion-button (click)="showConfirmRegister()">Register</button>
+				<button class="button-join" *ngIf="isUserRegistered === true" block ion-button (click)="openZoomModal()">Join Live Class</button>
+			</ion-col>
+		</ion-row>
+	</ion-grid>
+</ion-footer>
