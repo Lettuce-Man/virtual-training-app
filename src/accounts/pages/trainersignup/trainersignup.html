@@ -82,10 +82,60 @@
         </ion-item>
       </div>
 
-      <div class="row-signup">
-          <button class="signup-btn" type="submit" ion-button >Sign Up</button>
+      <div class = "input-row">
+        <ion-item no-lines class = "input-item input-controls">
+          <ion-label floating>Why do you want to be a trainer on FitnessLive? (max 500 characters)</ion-label>
+          <ion-input type = text [(ngModel)]="userData.bio" formControlName="bio" [class.error-input]="!signupform.controls.bio.valid && signupform.controls.bio.dirty"></ion-input>
+        </ion-item>
+
+        <ion-item class="input-item" no-lines *ngIf="( signupform.get('bio').hasError('bio') ||signupform.get('bio').hasError('required') ) && signupform.get('bio').touched">
+          <div class="error-text" *ngIf="signupform.get('bio').hasError('required') && signupform.get('bio').touched">
+            *Required field
+          </div>
+          <div class="error-text info-indent" *ngIf="signupform.get('password').hasError('maxlength')">
+              -maximum 500 characters
+          </div>
+        </ion-item>
       </div>
-      
+
+      <div class = "input-row">
+          <ion-item no-lines class = "input-item input-controls">
+            <ion-label floating>Do you have any previous relevant experience?</ion-label>
+            <ion-input></ion-input>
+          </ion-item>
+      </div>
+
+      <div class = "input-row">
+          <ion-item no-lines class = "input-item input-controls">
+            <ion-label floating>Please list any qualifications/certifications here</ion-label>
+            <ion-input></ion-input>
+          </ion-item>
+      </div>
+
+      <div class = "input-row">
+          <ion-list>
+              <ion-item>
+                  <ion-label>Please select the types of classes you would like to teach:</ion-label>
+                  <ion-select multiple="true">
+                    <ion-option value="strength">Strength</ion-option>
+                    <ion-option value="hit">HIT</ion-option>
+                    <ion-option value="yoga">Yoga</ion-option>
+                    <ion-option value="pilates">Pilates</ion-option>
+                    <ion-option value="martialArts">Martial Arts</ion-option>
+                    <ion-option value="swimming">Swimming</ion-option>
+                    <ion-option value="biking">Biking</ion-option>
+                    <ion-option value="running">Running</ion-option>
+                    <ion-option value="pilates">Pilates</ion-option>
+                    <ion-option value="nutrition">Nutrition</ion-option>
+                  </ion-select>
+                </ion-item>
+            </ion-list>
+      </div>
+      <!--TODO: Add upload button for resumes-->
+
+      <div class="row-signup">
+          <button class="signup-btn" type="submit" ion-button >Submit Trainer Application</button>
+      </div>
     </form>
   </ion-list>
 </ion-content>

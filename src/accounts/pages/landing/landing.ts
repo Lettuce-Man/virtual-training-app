@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, NavParams, ModalController} from 'ionic-angular';
 import { Signup } from '../signup/signup';
 import { Signin } from '../signin/signin';
+import { TrainerSignup } from '../trainersignup/trainersignup';
 
 @Component({
   selector: 'accounts-landing',
@@ -24,5 +25,12 @@ export class Landing {
 
   onGoToSignIn() {
   	this.navCtrl.push(Signin);
+  }
+
+  /*
+  onGoTrainerSignup - Go to trainer signup page.
+  */
+  onGoTrainerSignup() {
+    this.navCtrl.push(TrainerSignup);
   }
 }

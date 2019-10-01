@@ -14,7 +14,7 @@ Signin - Page to log a user into the application
 export class Signin implements OnInit {
   signupform: FormGroup;
 
-  //Hardcoded data for demo for now. Should be removed cleared.
+  //TODO: Add field for trainer/trainee to direct send
   userData = { "password": "Sarahtest1", "email": "sarah@gmail.com" };
 
   constructor(public navCtrl: NavController,private userService:UserService, private alertCtrl: AlertController, private myclassesService:MyclassesService) {

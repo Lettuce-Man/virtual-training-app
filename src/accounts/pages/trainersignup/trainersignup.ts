@@ -1,28 +1,34 @@
 import { Component, OnInit} from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { NavController, AlertController } from 'ionic-angular';
+import { NavController, AlertController} from 'ionic-angular';
 import { TraineeClassDiscover } from '../../../trainee';
-import {UserService} from '../../../user';
+import { UserService } from '../../../user';
 import { Signin } from '../signin/signin';
+import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer/ngx';
 
-export class SignUpModel {
+export class TrainerSignUpModel {
   name: string;
   email: string;
   password: string;
   passwordConfirm:string;
+  bio: string;
+  prevExp: string;
+  qualiCert: string;
 }
 
 @Component({
   selector: 'account-signup',
-  templateUrl: 'signup.html',
+  templateUrl: 'trainersignup.html',
 })
 /*
-Signup - Page that does the new user creation.
+TrainerSignup - Page that does the new trainer creation.
 */
-export class Signup implements OnInit{
+export class TrainerSignup implements OnInit{
 
+  public imageURI: any;
+  public imageFileName: any;
   public signupform: FormGroup;
-  public userData: SignUpModel = { "name": "", "password": "","passwordConfirm": "", "email": "" };
+  public userData: TrainerSignUpModel = { "name": "", "password": "","passwordConfirm": "", "email": "" , "bio": "", "prevExp": "", "qualiCert": ""};
 
   constructor(private navCtrl: NavController,private alertCtrl: AlertController, private userService:UserService) {
   }
@@ -35,6 +41,7 @@ export class Signup implements OnInit{
       passwordConfirm: new FormControl('', [Validators.required, Validators.pattern(PASSPATTERN)]),
       name: new FormControl('', [Validators.required, Validators.maxLength(200)]),
       email: new FormControl('', [Validators.required, Validators.email]),
+      bio: new FormControl('', [Validators.required, Validators.maxLength(500)]),
     });
   }
   /*
@@ -89,6 +96,8 @@ export class Signup implements OnInit{
           }).present();
       });
   }
+
+//TODO: Add upload method
 
   /*
   onGoBack - Go back a screen.

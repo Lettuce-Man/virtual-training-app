@@ -4,6 +4,7 @@ import { IonicModule } from 'ionic-angular';
 import { Landing } from './pages/landing/landing';
 import { Signin } from './pages/signin/signin';
 import { Signup } from './pages/signup/signup';
+import { TrainerSignup } from './pages/trainersignup/trainersignup';
 
 @NgModule({
   imports: [
@@ -14,12 +15,14 @@ import { Signup } from './pages/signup/signup';
   declarations: [
     Landing,
     Signin,
-    Signup
+    Signup,
+    TrainerSignup
   ],
   entryComponents: [
     Landing,
     Signin,
-    Signup
+    Signup,
+    TrainerSignup
   ],
   exports: [
     Landing
