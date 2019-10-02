@@ -1,0 +1,78 @@
+<div class="class-summary-component">
+	<ion-grid *ngIf="viewClassModel">
+		<!-- main view for this card. This will be populated dynamically with the templates below -->
+		 <ng-template [ngTemplateOutlet]="getTemplate()">
+		 </ng-template>
+
+	</ion-grid>
+</div>
+
+<!-- view for the detailed UX -->
+<ng-template #classDetailsTemplate>
+	<ion-row class="class-details">
+		<ion-col col-12>
+			<div class="logo" [ngStyle]="{'background-image':'url('+viewClassModel.image+')'}">
+				<ion-row>
+					<ion-col col-6>
+						<div *ngIf="showBackButton" class="go-back" (click)="onGoBack()">
+								<img src="assets/imgs/back-white.png">
+						</div>
+					</ion-col>
+					<ion-col *ngIf="showLevel" col-6>
+						<div class="level">
+							<img class="level-image" *ngFor="let imageSrc of viewClassModel.levelImages" src="{{ imageSrc }}">
+						</div>
+					</ion-col>
+				</ion-row>
+				<ion-row>
+					<ion-col col-12>
+						<p class="title">{{ viewClassModel.title }}</p>
+						<p class="instructor">By {{ viewClassModel.trainerName }}</p>
+					</ion-col>
+				</ion-row>
+				<ion-row>
+					<ion-col col-8>
+						<p class="day">Every {{ viewClassModel.day }}</p>
+						<p class="time">{{ viewClassModel.startTime }} - {{ viewClassModel.endTime }} </p>
+						<p class="period">{{ viewClassModel.startDate }} - {{ viewClassModel.endDate }}</p>
+					</ion-col>
+					<ion-col col-4>
+						<p class="price">{{ viewClassModel.price }}</p>
+					</ion-col>
+				</ion-row>
+			</div>
+		</ion-col>
+	</ion-row>
+</ng-template>
+
+<!-- simpler view for the my classes UX -->
+<ng-template #classSimpleTemplate>
+	<ion-row class="class-simple">
+		<ion-col col-12>
+			<div class="logo" [ngStyle]="{'background-image':'url('+viewClassModel.image+')'}">
+				<ion-row>
+					<ion-col col-12>
+						<div class="level">
+							<img class="level-image" *ngFor="let imageSrc of viewClassModel.levelImages" src="{{ imageSrc }}">
+						</div>
+					</ion-col>
+				</ion-row>
+				<ion-row>
+					<ion-col col-6>
+						<div class="details">
+							<p class="time">{{ viewClassModel.startTime }} to {{ viewClassModel.endTime }} </p>
+							<p class="day">Every {{ viewClassModel.day }}</p>
+							<p class="period">{{ viewClassModel.startDate }} - {{ viewClassModel.endDate }}</p>
+						</div>
+					</ion-col>
+					<ion-col col-6>
+						<div class="details">
+							<p class="title">{{ viewClassModel.title }}</p>
+							<p class="instructor">By {{ viewClassModel.trainerName }}</p>
+						</div>
+					</ion-col>
+				</ion-row>
+			</div>
+		</ion-col>
+	</ion-row>
+</ng-template>

@@ -3,45 +3,69 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { NavController, AlertController} from 'ionic-angular';
 import { TrainerClassDiscover } from '../../../trainer';
 import { UserService } from '../../../user';
-import { Signin } from '../signin/signin';
-import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer/ngx';
+import { Time, WeekDay } from '@angular/common';
 
-export class TrainerSignUpModel {
+export class NewClass {
   name: string;
-  email: string;
-  password: string;
-  passwordConfirm:string;
-  bio: string;
-  prevExp: string;
-  qualiCert: string;
+  description: string;
+  equipment: string;
+  bodywork: string;
+  calories: number;
+  startdate: Date;
+  enddate: Date;
+  starttime: number; //TODO: change to time object (ideally)
+  endtime: number;
+  level: number;
+  price: number;
+  days: number;
 }
 
 @Component({
   selector: 'account-signup',
-  templateUrl: 'trainersignup.html',
+  templateUrl: 'trainer-create-class.html',
 })
 /*
 TrainerSignup - Page that does the new trainer creation.
 */
-export class TrainerSignup implements OnInit{
+export class CreateClass implements OnInit{
 
   public imageURI: any;
   public imageFileName: any;
-  public signupform: FormGroup;
-  public userData: TrainerSignUpModel = { "name": "", "password": "","passwordConfirm": "", "email": "" , "bio": "", "prevExp": "", "qualiCert": ""};
+  public newclassform: FormGroup;
+  public classData: NewClass = { 
+    "name": "", 
+    "description": "",
+    "equipment": "", 
+    "bodywork": "" , 
+    "calories": 0, 
+    "startdate": new Date(), 
+    "enddate": new Date(),
+    "starttime": 0,
+    "endtime": 0,
+    "level": 0,
+    "price": 0,
+    "days": 0,
+  };
 
   constructor(private navCtrl: NavController,private alertCtrl: AlertController, private userService:UserService) {
   }
 
   ngOnInit() {
     //Setup the initial validation for the page
-    let PASSPATTERN = /^(?=.*\d)(?=.*[A-Z]).{0,50}$/;//all alpha numeric characters
-    this.signupform = new FormGroup({
-      password: new FormControl('', [Validators.required, Validators.pattern(PASSPATTERN), Validators.minLength(8), Validators.maxLength(50)]),
-      passwordConfirm: new FormControl('', [Validators.required, Validators.pattern(PASSPATTERN)]),
-      name: new FormControl('', [Validators.required, Validators.maxLength(200)]),
-      email: new FormControl('', [Validators.required, Validators.email]),
-      bio: new FormControl('', [Validators.required, Validators.maxLength(500)]),
+    this.newclassform = new FormGroup({
+      name: new FormControl('', [Validators.required, Validators.maxLength(50)]),
+      description: new FormControl('', [Validators.required, Validators.maxLength(250)]),
+      equipment: new FormControl('', [Validators.required]),
+      bodywork: new FormControl('', [Validators.required]),
+      calories: new FormControl('', [Validators.required, Validators.maxLength(3)]),
+      startdate: new FormControl('', [Validators.required]),
+      enddate: new FormControl('', [Validators.required]),
+      starttime: new FormControl('', [Validators.required]),
+      endtime: new FormControl('', [Validators.required]),
+      level: new FormControl('', [Validators.required]),
+      price: new FormControl('', [Validators.required]),
+      days: new FormControl('', [Validators.required]),
+
     });
   }
   /*
@@ -61,7 +85,7 @@ export class TrainerSignup implements OnInit{
   signup - Validate and call signup on the user service.
   */
   signup() {
-    if(this.signupform.invalid === true){
+    if(this.newclassform.invalid === true){
       this.alertCtrl.create({
         title: 'Error',
         subTitle:'Please make sure all inputs are correct.',
@@ -71,7 +95,7 @@ export class TrainerSignup implements OnInit{
       }).present();
       return;
     }
-    if(this.userData.password !== this.userData.passwordConfirm){
+    if(this.classData.password !== this.classData.passwordConfirm){
       this.alertCtrl.create({
         title: 'Passwords do not match',
         subTitle:'The passwords entered do not match!',
@@ -82,7 +106,7 @@ export class TrainerSignup implements OnInit{
       return;
     }
 
-    this.userService.signUp(this.userData.name, this.userData.email, this.userData.password)
+    this.userService.signUp(this.classData.name, this.classData.email, this.classData.password)
       .then(user => {
         this.navCtrl.setRoot(TrainerClassDiscover);
       })

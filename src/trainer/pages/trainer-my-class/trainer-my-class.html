@@ -1,0 +1,25 @@
+<ion-header>
+  <nav-menu-component [title]="'My Sessions'"></nav-menu-component>
+</ion-header>
+
+<ion-content class="card-background-content">
+
+  <!-- if user has no registered classes -->
+	<div *ngIf="allClasses.length < 1">
+		<ion-grid>
+		  <ion-row>
+		    <ion-col col-12>You have not registered for any classes.</ion-col>
+		  </ion-row>
+
+		</ion-grid>
+	</div>
+  <!-- if user has registered classes -->
+	<div *ngIf="allClasses.length > 0">
+    <div class="class-list">
+      <ion-list class="class" (click)="viewClass(class)" *ngFor="let class of allClasses">
+        <class-summary-component  [classModel]="class" [showBackButton]="false" [showLevel]="false" [view]="'simple'"></class-summary-component>
+      </ion-list>
+    </div>
+	</div>
+
+</ion-content>

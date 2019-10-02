@@ -1,0 +1,100 @@
+.page-signup {
+  background: linear-gradient(-179deg, #FE8C00 0%, #F83600 100%);
+
+  .button:hover {
+    background-color: #fff !important;
+  }
+
+  //These remove the default border validation
+  .input-item.ng-invalid{
+     border-bottom-color: transparent;
+  }
+  .input-item.ng-valid{
+     border-bottom-color: transparent;
+  }
+
+  .input-row {
+    padding-top: 10px;
+  }
+  .password-valid-icon {
+    color:#005000; //contrast ratio of 3.36
+    font-weight: bolder;
+    font-size: 20px;
+  }
+  .input-controls{
+    .item-inner {
+      color: white;
+      border-bottom: 1px solid white !important;
+    }
+  }
+  .input-item {
+    background-color: transparent;
+    padding-left:20px;
+    padding-right:20px;
+
+    .label {
+      color: white;
+    }
+
+    .error-input {
+      color: #362226;
+
+      ion-input {
+        border-bottom: 1.5px solid #362226;
+      }
+    }
+    .info-text {
+      color: white;
+      font-size: 15px;
+    }
+    .info-indent {
+      padding-left: 30px;
+    }
+    .error-text {
+      color: #362226;
+      font-size: 15px;
+    }
+    .error-input-password {
+      //Satisfied password requirement
+      color:#005000; //contrast ratio of 3.36
+      //color: #98C251; //contrast ratio of 1.41
+      //color: darkgreen; //#006400 contrast ratio of 2.55
+      font-weight: bold;
+    }
+    .extra-padding {
+      padding-top: 7px;
+    }
+    ion-icon {
+      padding-right: 5px;
+    }
+
+  }
+
+  .row-signup {
+    padding-left:20px;
+    padding-right:20px;
+    padding-top:40px;
+
+  }
+  .signup-btn{
+    background-color: white;
+    color:#FC3F1B;
+    height: 55px;
+    width: 100%;
+  }
+  .list-md {
+    border-bottom: none;
+  }
+  ion-list {
+    padding-top: 10px;
+  }
+
+  .back{
+    .go-back-btn {
+      text-align: left;
+      padding-left:10px;
+      padding-top: 10px;
+    }
+  }
+
+}

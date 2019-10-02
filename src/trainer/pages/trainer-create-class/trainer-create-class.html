@@ -1,0 +1,141 @@
+
+<ion-content class="page-signup">
+  <ion-grid>
+    <ion-row class="back" text-center>
+			<ion-col col-12>
+        <div class="go-back-btn" (click)="onGoBack()">
+            <img src="assets/imgs/back-white.png">
+        </div>
+			</ion-col>
+		</ion-row>
+  </ion-grid>
+  <ion-list >
+    <form novalidate (ngSubmit)="signup()" [formGroup]="newclassform">
+      <div class="input-row">
+        <ion-item no-lines class="input-item input-controls">
+          <ion-label floating>Name of Class</ion-label>
+          <ion-input type="text" [(ngModel)]="classData.name" formControlName="name" [class.error-input]="!newclassform.controls.name.valid && newclassform.controls.name.dirty"></ion-input>
+        </ion-item>
+        <ion-item class="input-item" no-lines *ngIf="( newclassform.get('name').hasError('minlength') || newclassform.get('name').hasError('maxlength') ||newclassform.get('name').hasError('pattern') ||newclassform.get('name').hasError('required') ) && newclassform.get('name').touched">
+          <div class="error-text" *ngIf="newclassform.get('name').hasError('required') && newclassform.get('name').touched">
+            *Required field
+          </div>
+          <div class="error-text" *ngIf="newclassform.get('name').hasError('maxlength') && newclassform.get('name').touched">
+            <ion-icon name="alert"></ion-icon>Maximum 50 characters
+          </div>
+        </ion-item>
+      </div>
+
+      <div class="input-row">
+        <ion-item no-lines class="input-item input-controls">
+          <ion-label floating>Email</ion-label>
+          <ion-input type="text" [(ngModel)]="classData.email" formControlName="email" [class.error-input]="!newclassform.controls.email.valid && newclassform.controls.email.dirty"></ion-input>
+        </ion-item>
+        <ion-item class="input-item" no-lines *ngIf="( newclassform.get('email').hasError('email') ||newclassform.get('email').hasError('required') ) && newclassform.get('email').touched">
+          <div class="error-text" *ngIf="newclassform.get('email').hasError('required') && newclassform.get('email').touched">
+            *Required field
+          </div>
+          <div class="error-text" *ngIf="newclassform.get('email').hasError('email') && newclassform.get('email').touched && classData.email.length > 0">
+            <ion-icon name="alert"></ion-icon>Email address invalid
+          </div>
+        </ion-item>
+      </div>
+
+      <div class="input-row">
+        <ion-item no-lines class="input-item input-controls">
+          <ion-label floating>Password</ion-label>
+          <ion-input type="password" [(ngModel)]="classData.password" formControlName="password" [class.error-input]="!newclassform.controls.password.valid && newclassform.controls.password.dirty"></ion-input>
+        </ion-item>
+        <!-- <ion-item text-wrap class="input-item" no-lines *ngIf="(newclassform.get('password').hasError('pattern') || newclassform.get('password').hasError('minlength') || newclassform.get('password').hasError('maxlength') || classData.password.length == 0)"> -->
+        <ion-item text-wrap class="input-item" no-lines>
+          <div class="info-text extra-padding" [class.error-input-password]="!newclassform.get('password').hasError('pattern') && !newclassform.get('password').hasError('minlength') && classData.password.length > 0">
+            <ion-icon name="alert"></ion-icon>Password should include:
+          </div>
+          <div class="info-text info-indent extra-padding" [class.error-input-password]="hasUppercase(classData.password) && classData.password.length > 0">
+            <span><ion-icon class="password-valid-icon" *ngIf="hasUppercase(classData.password) && classData.password.length > 0" name="checkmark"></ion-icon></span>at least one uppercase letter
+          </div>
+          <div class="info-text info-indent" [class.error-input-password]="hasNumber(classData.password) && classData.password.length > 0">
+            <span><ion-icon class="password-valid-icon" *ngIf="hasNumber(classData.password) && classData.password.length > 0" name="checkmark"></ion-icon></span>at least one  number
+          </div>
+          <div class="info-text info-indent" [class.error-input-password]="!newclassform.get('password').hasError('minlength') && classData.password.length > 0">
+            <span><ion-icon class="password-valid-icon" *ngIf="!newclassform.get('password').hasError('minlength') && classData.password.length > 0" name="checkmark"></ion-icon></span>minimum 8 characters
+          </div>
+          <div class="error-text info-indent" *ngIf="newclassform.get('password').hasError('maxlength')">
+            -maximum 50 characters
+          </div>
+        </ion-item>
+      </div>
+
+      <div class="input-row">
+        <ion-item no-lines class="input-item input-controls">
+          <ion-label floating>Confirm Password</ion-label>
+          <ion-input type="password" [(ngModel)]="classData.passwordConfirm" formControlName="passwordConfirm" [class.error-input]="classData.passwordConfirm !== classData.password ||!newclassform.controls.passwordConfirm.valid && newclassform.controls.passwordConfirm.dirty"></ion-input>
+        </ion-item>
+
+        <ion-item class="input-item" no-lines *ngIf="( classData.passwordConfirm !== classData.password ||newclassform.get('password').hasError('required') ) && newclassform.get('passwordConfirm').touched">
+          <div class="error-text" *ngIf="newclassform.get('passwordConfirm').hasError('required') && newclassform.get('passwordConfirm').touched">
+            *Required field
+          </div>
+          <div class="error-text" *ngIf="classData.passwordConfirm.length > 0 && classData.passwordConfirm !== classData.password && newclassform.get('passwordConfirm').touched">
+            <ion-icon name="alert"></ion-icon>Passwords do not match
+          </div>
+        </ion-item>
+      </div>
+
+      <div class = "input-row">
+        <ion-item no-lines class = "input-item input-controls">
+          <ion-label floating>Why do you want to be a trainer on FitnessLive? (max 500 characters)</ion-label>
+          <ion-input type = text [(ngModel)]="classData.bio" formControlName="bio" [class.error-input]="!newclassform.controls.bio.valid && newclassform.controls.bio.dirty"></ion-input>
+        </ion-item>
+
+        <ion-item class="input-item" no-lines *ngIf="( newclassform.get('bio').hasError('bio') ||newclassform.get('bio').hasError('required') ) && newclassform.get('bio').touched">
+          <div class="error-text" *ngIf="newclassform.get('bio').hasError('required') && newclassform.get('bio').touched">
+            *Required field
+          </div>
+          <div class="error-text info-indent" *ngIf="newclassform.get('password').hasError('maxlength')">
+              -maximum 500 characters
+          </div>
+        </ion-item>
+      </div>
+
+      <div class = "input-row">
+          <ion-item no-lines class = "input-item input-controls">
+            <ion-label floating>Do you have any previous relevant experience?</ion-label>
+            <ion-input></ion-input>
+          </ion-item>
+      </div>
+
+      <div class = "input-row">
+          <ion-item no-lines class = "input-item input-controls">
+            <ion-label floating>Please list any qualifications/certifications here</ion-label>
+            <ion-input></ion-input>
+          </ion-item>
+      </div>
+
+      <div class = "input-row">
+          <ion-list>
+              <ion-item>
+                  <ion-label>Please select the types of classes you would like to teach:</ion-label>
+                  <ion-select multiple="true">
+                    <ion-option value="strength">Strength</ion-option>
+                    <ion-option value="hit">HIT</ion-option>
+                    <ion-option value="yoga">Yoga</ion-option>
+                    <ion-option value="pilates">Pilates</ion-option>
+                    <ion-option value="martialArts">Martial Arts</ion-option>
+                    <ion-option value="swimming">Swimming</ion-option>
+                    <ion-option value="biking">Biking</ion-option>
+                    <ion-option value="running">Running</ion-option>
+                    <ion-option value="pilates">Pilates</ion-option>
+                    <ion-option value="nutrition">Nutrition</ion-option>
+                  </ion-select>
+                </ion-item>
+            </ion-list>
+      </div>
+      <!--TODO: Add upload button for resumes-->
+
+      <div class="row-signup">
+          <button class="signup-btn" type="submit" ion-button >Create Class</button>
+      </div>
+    </form>
+  </ion-list>
+</ion-content>

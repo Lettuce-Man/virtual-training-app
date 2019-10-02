@@ -14,6 +14,7 @@ import { MyApp } from './app.component';
 import { UserModule } from '../user';
 import { TraineeModule} from '../trainee';
 import { AccountsModule } from '../accounts';
+import { TrainerModule } from '../trainer';
 
 
 @NgModule({
@@ -27,7 +28,8 @@ import { AccountsModule } from '../accounts';
     FormsModule,
     UserModule,
     TraineeModule,
-    AccountsModule
+    AccountsModule,
+    TrainerModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
