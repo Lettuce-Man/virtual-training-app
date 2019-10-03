@@ -1,5 +1,5 @@
 import { Component, OnInit} from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators, MaxLengthValidator } from '@angular/forms';
 import { NavController, AlertController} from 'ionic-angular';
 import { TrainerClassDiscover } from '../../../trainer';
 import { UserService } from '../../../user';
@@ -9,10 +9,10 @@ export class NewClass {
   name: string;
   description: string;
   equipment: string;
-  bodywork: string;
+  //bodywork: string;
   calories: number;
-  startdate: Date;
-  enddate: Date;
+  startdate: string; //TODO: change to date object
+  enddate: string;
   starttime: number; //TODO: change to time object (ideally)
   endtime: number;
   level: number;
@@ -36,10 +36,10 @@ export class CreateClass implements OnInit{
     "name": "", 
     "description": "",
     "equipment": "", 
-    "bodywork": "" , 
+    //"bodywork": "" , //TODO: Reimplement once validation is confirmed possible
     "calories": 0, 
-    "startdate": new Date(), 
-    "enddate": new Date(),
+    "startdate": "", 
+    "enddate": "",
     "starttime": 0,
     "endtime": 0,
     "level": 0,
@@ -55,8 +55,8 @@ export class CreateClass implements OnInit{
     this.newclassform = new FormGroup({
       name: new FormControl('', [Validators.required, Validators.maxLength(50)]),
       description: new FormControl('', [Validators.required, Validators.maxLength(250)]),
-      equipment: new FormControl('', [Validators.required]),
-      bodywork: new FormControl('', [Validators.required]),
+      equipment: new FormControl('', [Validators.required, Validators.maxLength(50)]),
+      //bodywork: new FormControl('', [Validators.required]),
       calories: new FormControl('', [Validators.required, Validators.maxLength(3)]),
       startdate: new FormControl('', [Validators.required]),
       enddate: new FormControl('', [Validators.required]),
@@ -82,46 +82,11 @@ export class CreateClass implements OnInit{
   }
 
   /*
-  signup - Validate and call signup on the user service.
+  Create class - Validate and call signup on the user service.
   */
-  signup() {
-    if(this.newclassform.invalid === true){
-      this.alertCtrl.create({
-        title: 'Error',
-        subTitle:'Please make sure all inputs are correct.',
-        buttons: [{
-            text:'Dismiss'
-        }]
-      }).present();
-      return;
-    }
-    if(this.classData.password !== this.classData.passwordConfirm){
-      this.alertCtrl.create({
-        title: 'Passwords do not match',
-        subTitle:'The passwords entered do not match!',
-        buttons: [{
-            text:'Dismiss'
-        }]
-      }).present();
-      return;
-    }
+  
 
-    this.userService.signUp(this.classData.name, this.classData.email, this.classData.password)
-      .then(user => {
-        this.navCtrl.setRoot(TrainerClassDiscover);
-      })
-      .catch(err => {
-          this.alertCtrl.create({
-            title: 'User Information',
-            subTitle:err,
-            buttons: [{
-                text:'Dismiss'
-            }]
-          }).present();
-      });
-  }
-
-//TODO: Add upload method
+//TODO: Add create class method
 
   /*
   onGoBack - Go back a screen.

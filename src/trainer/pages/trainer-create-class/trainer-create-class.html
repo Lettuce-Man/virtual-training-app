@@ -28,114 +28,153 @@
 
       <div class="input-row">
         <ion-item no-lines class="input-item input-controls">
-          <ion-label floating>Email</ion-label>
-          <ion-input type="text" [(ngModel)]="classData.email" formControlName="email" [class.error-input]="!newclassform.controls.email.valid && newclassform.controls.email.dirty"></ion-input>
+          <ion-label floating>Short Description of Class</ion-label>
+          <ion-input type="text" [(ngModel)]="classData.description" formControlName="description" [class.error-input]="!newclassform.controls.description.valid && newclassform.controls.description.dirty"></ion-input>
         </ion-item>
-        <ion-item class="input-item" no-lines *ngIf="( newclassform.get('email').hasError('email') ||newclassform.get('email').hasError('required') ) && newclassform.get('email').touched">
-          <div class="error-text" *ngIf="newclassform.get('email').hasError('required') && newclassform.get('email').touched">
+        <ion-item class="input-item" no-lines *ngIf="( newclassform.get('description').hasError('minlength') || newclassform.get('description').hasError('maxlength') ||newclassform.get('description').hasError('pattern') ||newclassform.get('description').hasError('required') ) && newclassform.get('description').touched">
+          <div class="error-text" *ngIf="newclassform.get('description').hasError('required') && newclassform.get('description').touched">
             *Required field
           </div>
-          <div class="error-text" *ngIf="newclassform.get('email').hasError('email') && newclassform.get('email').touched && classData.email.length > 0">
-            <ion-icon name="alert"></ion-icon>Email address invalid
+          <div class="error-text" *ngIf="newclassform.get('description').hasError('maxlength') && newclassform.get('description').touched">
+            <ion-icon name="alert"></ion-icon>Maximum 250 characters
           </div>
         </ion-item>
       </div>
 
       <div class="input-row">
         <ion-item no-lines class="input-item input-controls">
-          <ion-label floating>Password</ion-label>
-          <ion-input type="password" [(ngModel)]="classData.password" formControlName="password" [class.error-input]="!newclassform.controls.password.valid && newclassform.controls.password.dirty"></ion-input>
+          <ion-label floating>Equipment needed:</ion-label>
+          <ion-input type="text" [(ngModel)]="classData.equipment" formControlName="equipment" [class.error-input]="!newclassform.controls.equipment.valid && newclassform.controls.equipment.dirty"></ion-input>
         </ion-item>
-        <!-- <ion-item text-wrap class="input-item" no-lines *ngIf="(newclassform.get('password').hasError('pattern') || newclassform.get('password').hasError('minlength') || newclassform.get('password').hasError('maxlength') || classData.password.length == 0)"> -->
-        <ion-item text-wrap class="input-item" no-lines>
-          <div class="info-text extra-padding" [class.error-input-password]="!newclassform.get('password').hasError('pattern') && !newclassform.get('password').hasError('minlength') && classData.password.length > 0">
-            <ion-icon name="alert"></ion-icon>Password should include:
-          </div>
-          <div class="info-text info-indent extra-padding" [class.error-input-password]="hasUppercase(classData.password) && classData.password.length > 0">
-            <span><ion-icon class="password-valid-icon" *ngIf="hasUppercase(classData.password) && classData.password.length > 0" name="checkmark"></ion-icon></span>at least one uppercase letter
-          </div>
-          <div class="info-text info-indent" [class.error-input-password]="hasNumber(classData.password) && classData.password.length > 0">
-            <span><ion-icon class="password-valid-icon" *ngIf="hasNumber(classData.password) && classData.password.length > 0" name="checkmark"></ion-icon></span>at least one  number
-          </div>
-          <div class="info-text info-indent" [class.error-input-password]="!newclassform.get('password').hasError('minlength') && classData.password.length > 0">
-            <span><ion-icon class="password-valid-icon" *ngIf="!newclassform.get('password').hasError('minlength') && classData.password.length > 0" name="checkmark"></ion-icon></span>minimum 8 characters
-          </div>
-          <div class="error-text info-indent" *ngIf="newclassform.get('password').hasError('maxlength')">
-            -maximum 50 characters
-          </div>
-        </ion-item>
-      </div>
-
-      <div class="input-row">
-        <ion-item no-lines class="input-item input-controls">
-          <ion-label floating>Confirm Password</ion-label>
-          <ion-input type="password" [(ngModel)]="classData.passwordConfirm" formControlName="passwordConfirm" [class.error-input]="classData.passwordConfirm !== classData.password ||!newclassform.controls.passwordConfirm.valid && newclassform.controls.passwordConfirm.dirty"></ion-input>
-        </ion-item>
-
-        <ion-item class="input-item" no-lines *ngIf="( classData.passwordConfirm !== classData.password ||newclassform.get('password').hasError('required') ) && newclassform.get('passwordConfirm').touched">
-          <div class="error-text" *ngIf="newclassform.get('passwordConfirm').hasError('required') && newclassform.get('passwordConfirm').touched">
+        <ion-item class="input-item" no-lines *ngIf="( newclassform.get('equipment').hasError('minlength') || newclassform.get('equipment').hasError('maxlength') ||newclassform.get('equipment').hasError('pattern') ||newclassform.get('equipment').hasError('required') ) && newclassform.get('equipment').touched">
+          <div class="error-text" *ngIf="newclassform.get('equipment').hasError('required') && newclassform.get('equipment').touched">
             *Required field
           </div>
-          <div class="error-text" *ngIf="classData.passwordConfirm.length > 0 && classData.passwordConfirm !== classData.password && newclassform.get('passwordConfirm').touched">
-            <ion-icon name="alert"></ion-icon>Passwords do not match
+          <div class="error-text" *ngIf="newclassform.get('equipment').hasError('maxlength') && newclassform.get('equipment').touched">
+            <ion-icon name="alert"></ion-icon>Maximum 50 characters
           </div>
         </ion-item>
       </div>
 
+      <!--TODO: Find a way to validate this-->
       <div class = "input-row">
-        <ion-item no-lines class = "input-item input-controls">
-          <ion-label floating>Why do you want to be a trainer on FitnessLive? (max 500 characters)</ion-label>
-          <ion-input type = text [(ngModel)]="classData.bio" formControlName="bio" [class.error-input]="!newclassform.controls.bio.valid && newclassform.controls.bio.dirty"></ion-input>
-        </ion-item>
+        <ion-list>
+            <ion-item>
+                <ion-label>Workout areas (Select)</ion-label>
+                <ion-select multiple="true">
+                  <ion-option value="arms">Arms</ion-option>
+                  <ion-option value="core">Core</ion-option>
+                  <ion-option value="back">Back</ion-option>
+                  <ion-option value="glutes">Glutes</ion-option>
+                  <ion-option value="quads">Quads</ion-option>
+                  <!--TODO: Add more areas-->
+                </ion-select>
+              </ion-item>
+          </ion-list>
+    </div>
 
-        <ion-item class="input-item" no-lines *ngIf="( newclassform.get('bio').hasError('bio') ||newclassform.get('bio').hasError('required') ) && newclassform.get('bio').touched">
-          <div class="error-text" *ngIf="newclassform.get('bio').hasError('required') && newclassform.get('bio').touched">
-            *Required field
-          </div>
-          <div class="error-text info-indent" *ngIf="newclassform.get('password').hasError('maxlength')">
-              -maximum 500 characters
-          </div>
-        </ion-item>
-      </div>
+    <div class="input-row">
+      <ion-item no-lines class="input-item input-controls">
+        <ion-label floating>Calorie burn expected</ion-label>
+        <ion-input type="text" [(ngModel)]="classData.calories" formControlName="calories" [class.error-input]="!newclassform.controls.calories.valid && newclassform.controls.calories.dirty"></ion-input>
+      </ion-item>
+      <ion-item class="input-item" no-lines *ngIf="( newclassform.get('calories').hasError('minlength') || newclassform.get('calories').hasError('maxlength') ||newclassform.get('calories').hasError('pattern') ||newclassform.get('calories').hasError('required') ) && newclassform.get('calories').touched">
+        <div class="error-text" *ngIf="newclassform.get('calories').hasError('required') && newclassform.get('calories').touched">
+          *Required field
+        </div>
+        <div class="error-text" *ngIf="newclassform.get('calories').hasError('maxlength') && newclassform.get('calories').touched">
+          <ion-icon name="alert"></ion-icon>Maximum 3 characters
+        </div>
+      </ion-item>
+    </div>
 
-      <div class = "input-row">
-          <ion-item no-lines class = "input-item input-controls">
-            <ion-label floating>Do you have any previous relevant experience?</ion-label>
-            <ion-input></ion-input>
-          </ion-item>
-      </div>
+    <div class="input-row">
+      <ion-item no-lines class="input-item input-controls">
+        <ion-label floating>Class start date</ion-label>
+        <ion-input type="text" [(ngModel)]="classData.startdate" formControlName="startdate" [class.error-input]="!newclassform.controls.startdate.valid && newclassform.controls.startdate.dirty"></ion-input>
+      </ion-item>
+      <ion-item class="input-item" no-lines *ngIf="( newclassform.get('startdate').hasError('minlength') || newclassform.get('startdate').hasError('maxlength') ||newclassform.get('startdate').hasError('pattern') ||newclassform.get('startdate').hasError('required') ) && newclassform.get('startdate').touched">
+        <div class="error-text" *ngIf="newclassform.get('startdate').hasError('required') && newclassform.get('startdate').touched">
+          *Required field
+        </div>
+      </ion-item>
+    </div>
 
-      <div class = "input-row">
-          <ion-item no-lines class = "input-item input-controls">
-            <ion-label floating>Please list any qualifications/certifications here</ion-label>
-            <ion-input></ion-input>
-          </ion-item>
-      </div>
+    <div class="input-row">
+      <ion-item no-lines class="input-item input-controls">
+        <ion-label floating>Class end date</ion-label>
+        <ion-input type="text" [(ngModel)]="classData.enddate" formControlName="enddate" [class.error-input]="!newclassform.controls.enddate.valid && newclassform.controls.enddate.dirty"></ion-input>
+      </ion-item>
+      <ion-item class="input-item" no-lines *ngIf="( newclassform.get('enddate').hasError('minlength') || newclassform.get('enddate').hasError('maxlength') ||newclassform.get('enddate').hasError('pattern') ||newclassform.get('enddate').hasError('required') ) && newclassform.get('enddate').touched">
+        <div class="error-text" *ngIf="newclassform.get('enddate').hasError('required') && newclassform.get('enddate').touched">
+          *Required field
+        </div>
+      </ion-item>
+    </div>
 
-      <div class = "input-row">
-          <ion-list>
-              <ion-item>
-                  <ion-label>Please select the types of classes you would like to teach:</ion-label>
-                  <ion-select multiple="true">
-                    <ion-option value="strength">Strength</ion-option>
-                    <ion-option value="hit">HIT</ion-option>
-                    <ion-option value="yoga">Yoga</ion-option>
-                    <ion-option value="pilates">Pilates</ion-option>
-                    <ion-option value="martialArts">Martial Arts</ion-option>
-                    <ion-option value="swimming">Swimming</ion-option>
-                    <ion-option value="biking">Biking</ion-option>
-                    <ion-option value="running">Running</ion-option>
-                    <ion-option value="pilates">Pilates</ion-option>
-                    <ion-option value="nutrition">Nutrition</ion-option>
-                  </ion-select>
-                </ion-item>
-            </ion-list>
-      </div>
-      <!--TODO: Add upload button for resumes-->
+    <div class="input-row">
+      <ion-item no-lines class="input-item input-controls">
+        <ion-label floating>Class start time</ion-label>
+        <ion-input type="text" [(ngModel)]="classData.starttime" formControlName="starttime" [class.error-input]="!newclassform.controls.starttime.valid && newclassform.controls.starttime.dirty"></ion-input>
+      </ion-item>
+      <ion-item class="input-item" no-lines *ngIf="( newclassform.get('starttime').hasError('minlength') || newclassform.get('starttime').hasError('maxlength') ||newclassform.get('starttime').hasError('pattern') ||newclassform.get('starttime').hasError('required') ) && newclassform.get('starttime').touched">
+        <div class="error-text" *ngIf="newclassform.get('starttime').hasError('required') && newclassform.get('starttime').touched">
+          *Required field
+        </div>
+      </ion-item>
+    </div>
 
-      <div class="row-signup">
-          <button class="signup-btn" type="submit" ion-button >Create Class</button>
-      </div>
+    <div class="input-row">
+      <ion-item no-lines class="input-item input-controls">
+        <ion-label floating>Class end time</ion-label>
+        <ion-input type="text" [(ngModel)]="classData.endtime" formControlName="endtime" [class.error-input]="!newclassform.controls.endtime.valid && newclassform.controls.endtime.dirty"></ion-input>
+      </ion-item>
+      <ion-item class="input-item" no-lines *ngIf="( newclassform.get('endtime').hasError('minlength') || newclassform.get('endtime').hasError('maxlength') ||newclassform.get('endtime').hasError('pattern') ||newclassform.get('endtime').hasError('required') ) && newclassform.get('endtime').touched">
+        <div class="error-text" *ngIf="newclassform.get('endtime').hasError('required') && newclassform.get('endtime').touched">
+          *Required field
+        </div>
+      </ion-item>
+    </div>
+
+    <div class="input-row">
+      <ion-item no-lines class="input-item input-controls">
+        <ion-label floating>Level of Class (1-3)</ion-label>
+        <ion-input type="text" [(ngModel)]="classData.level" formControlName="level" [class.error-input]="!newclassform.controls.level.valid && newclassform.controls.level.dirty"></ion-input>
+      </ion-item>
+      <ion-item class="input-item" no-lines *ngIf="( newclassform.get('level').hasError('minlength') || newclassform.get('level').hasError('maxlength') ||newclassform.get('level').hasError('pattern') ||newclassform.get('level').hasError('required') ) && newclassform.get('level').touched">
+        <div class="error-text" *ngIf="newclassform.get('level').hasError('required') && newclassform.get('level').touched">
+          *Required field
+        </div>
+      </ion-item>
+    </div>
+
+    <div class="input-row">
+      <ion-item no-lines class="input-item input-controls">
+        <ion-label floating>Price of Class</ion-label>
+        <ion-input type="text" [(ngModel)]="classData.price" formControlName="price" [class.error-input]="!newclassform.controls.price.valid && newclassform.controls.price.dirty"></ion-input>
+      </ion-item>
+      <ion-item class="input-item" no-lines *ngIf="( newclassform.get('price').hasError('minlength') || newclassform.get('price').hasError('maxlength') ||newclassform.get('price').hasError('pattern') ||newclassform.get('price').hasError('required') ) && newclassform.get('price').touched">
+        <div class="error-text" *ngIf="newclassform.get('price').hasError('required') && newclassform.get('price').touched">
+          *Required field
+        </div>
+      </ion-item>
+    </div>
+
+    <div class="input-row">
+      <ion-item no-lines class="input-item input-controls">
+        <ion-label floating>Days Class will meet</ion-label>
+        <ion-input type="text" [(ngModel)]="classData.days" formControlName="days" [class.error-input]="!newclassform.controls.days.valid && newclassform.controls.days.dirty"></ion-input>
+      </ion-item>
+      <ion-item class="input-item" no-lines *ngIf="( newclassform.get('days').hasError('minlength') || newclassform.get('days').hasError('maxlength') ||newclassform.get('days').hasError('pattern') ||newclassform.get('days').hasError('required') ) && newclassform.get('days').touched">
+        <div class="error-text" *ngIf="newclassform.get('days').hasError('required') && newclassform.get('days').touched">
+          *Required field
+        </div>
+      </ion-item>
+    </div>
+     
+    <div class="row-signup">
+      <button class="signup-btn" type="submit" ion-button >Create Class</button>
+    </div>
     </form>
   </ion-list>
 </ion-content>
