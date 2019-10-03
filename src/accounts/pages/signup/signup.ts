@@ -10,6 +10,7 @@ export class SignUpModel {
   email: string;
   password: string;
   passwordConfirm:string;
+  type: 0;
 }
 
 @Component({
@@ -22,7 +23,7 @@ Signup - Page that does the new user creation.
 export class Signup implements OnInit{
 
   public signupform: FormGroup;
-  public userData: SignUpModel = { "name": "", "password": "","passwordConfirm": "", "email": "" };
+  public userData: SignUpModel = { "name": "", "password": "","passwordConfirm": "", "email": "", "type": 0};
 
   constructor(private navCtrl: NavController,private alertCtrl: AlertController, private userService:UserService) {
   }
@@ -75,7 +76,7 @@ export class Signup implements OnInit{
       return;
     }
 
-    this.userService.signUp(this.userData.name, this.userData.email, this.userData.password)
+    this.userService.signUp(this.userData.name, this.userData.email, this.userData.password, this.userData.type)
       .then(user => {
         this.navCtrl.setRoot(TraineeClassDiscover);
       })

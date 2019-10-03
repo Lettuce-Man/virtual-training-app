@@ -14,6 +14,7 @@ export class TrainerSignUpModel {
   bio: string;
   prevExp: string;
   qualiCert: string;
+  type: 1;
 }
 
 @Component({
@@ -28,7 +29,7 @@ export class TrainerSignup implements OnInit{
   public imageURI: any;
   public imageFileName: any;
   public signupform: FormGroup;
-  public userData: TrainerSignUpModel = { "name": "", "password": "","passwordConfirm": "", "email": "" , "bio": "", "prevExp": "", "qualiCert": ""};
+  public userData: TrainerSignUpModel = { "name": "", "password": "","passwordConfirm": "", "email": "" , "bio": "", "prevExp": "", "qualiCert": "", "type": 1};
 
   constructor(private navCtrl: NavController,private alertCtrl: AlertController, private userService:UserService) {
   }
@@ -82,7 +83,7 @@ export class TrainerSignup implements OnInit{
       return;
     }
 
-    this.userService.signUp(this.userData.name, this.userData.email, this.userData.password)
+    this.userService.signUp(this.userData.name, this.userData.email, this.userData.password, this.userData.type)
       .then(user => {
         this.navCtrl.setRoot(TrainerClassDiscover);
       })

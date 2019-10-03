@@ -22,12 +22,12 @@ export class NewClass {
 
 @Component({
   selector: 'account-signup',
-  templateUrl: 'trainer-create-class.html',
+  templateUrl: 'trainer-create-profile.html',
 })
 /*
 TrainerSignup - Page that does the new trainer creation.
 */
-export class CreateClass implements OnInit{
+export class CreateProfile implements OnInit{
 
   public imageURI: any;
   public imageFileName: any;
@@ -84,10 +84,9 @@ export class CreateClass implements OnInit{
   /*
   Create class - Validate and call signup on the user service.
   */
-  createClass() {
-    //TODO: create class method
-  }
   
+
+//TODO: Add create class method
 
   /*
   onGoBack - Go back a screen.

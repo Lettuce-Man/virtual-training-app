@@ -10,7 +10,7 @@
 		</ion-row>
   </ion-grid>
   <ion-list >
-    <form novalidate (ngSubmit)="createClass()" [formGroup]="newclassform">
+    <form novalidate (ngSubmit)="signup()" [formGroup]="newclassform">
       <div class="input-row">
         <ion-item no-lines class="input-item input-controls">
           <ion-label floating>Name of Class</ion-label>
@@ -63,13 +63,11 @@
                 <ion-label>Workout areas (Select)</ion-label>
                 <ion-select multiple="true">
                   <ion-option value="arms">Arms</ion-option>
-                  <ion-option value="chest">Chest</ion-option>
+                  <ion-option value="core">Core</ion-option>
                   <ion-option value="back">Back</ion-option>
                   <ion-option value="glutes">Glutes</ion-option>
-                  <ion-option value="core">Core</ion-option>
-                  <ion-option value="calves">Calves</ion-option>
-                  <ion-option value="legs">Legs</ion-option>
-                  <ion-option value="shoulders">Shoulders</ion-option>
+                  <ion-option value="quads">Quads</ion-option>
+                  <!--TODO: Add more areas-->
                 </ion-select>
               </ion-item>
           </ion-list>
