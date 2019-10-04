@@ -1,6 +1,6 @@
 import { Component, OnInit} from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { NavController, AlertController} from 'ionic-angular';
+import { NavController, AlertController, MenuController } from 'ionic-angular';
 import { TrainerClassDiscover } from '../../../trainer';
 import { UserService } from '../../../user';
 import { Signin } from '../signin/signin';
@@ -14,7 +14,7 @@ export class TrainerSignUpModel {
   bio: string;
   prevExp: string;
   qualiCert: string;
-  type: 1;
+  type: true;
 }
 
 @Component({
@@ -29,9 +29,9 @@ export class TrainerSignup implements OnInit{
   public imageURI: any;
   public imageFileName: any;
   public signupform: FormGroup;
-  public userData: TrainerSignUpModel = { "name": "", "password": "","passwordConfirm": "", "email": "" , "bio": "", "prevExp": "", "qualiCert": "", "type": 1};
+  public userData: TrainerSignUpModel = { "name": "", "password": "","passwordConfirm": "", "email": "" , "bio": "", "prevExp": "", "qualiCert": "", "type": true};
 
-  constructor(private navCtrl: NavController,private alertCtrl: AlertController, private userService:UserService) {
+  constructor(private navCtrl: NavController,private alertCtrl: AlertController, private userService:UserService, private menuCtrl: MenuController) {
   }
 
   ngOnInit() {
@@ -86,6 +86,8 @@ export class TrainerSignup implements OnInit{
     this.userService.signUp(this.userData.name, this.userData.email, this.userData.password, this.userData.type)
       .then(user => {
         this.navCtrl.setRoot(TrainerClassDiscover);
+        this.menuCtrl.enable(true, 'trainer');
+        this.menuCtrl.enable(false, 'trainee');
       })
       .catch(err => {
           this.alertCtrl.create({

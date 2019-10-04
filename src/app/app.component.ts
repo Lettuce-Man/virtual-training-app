@@ -4,6 +4,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { NavController, MenuController, App } from 'ionic-angular';
 import { TraineeClassDiscover, TraineeMyClass } from '../trainee';
+import { TrainerClassDiscover, TrainerMyClass } from '../trainer';
 import {Landing} from '../accounts';
 import {UserService} from '../user';
 
@@ -16,6 +17,8 @@ MyApp - main component that starts the application.
 export class MyApp {
   pageMySessions = TraineeMyClass;
   pageDiscoverClass = TraineeClassDiscover;
+  pageMyClasses = TrainerClassDiscover;
+  pageMyProfile = TrainerMyClass;
   currentPage = null;
   rootPage;
   launchPage = Landing;

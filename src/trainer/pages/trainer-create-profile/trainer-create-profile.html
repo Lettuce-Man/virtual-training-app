@@ -13,7 +13,7 @@
     <form novalidate (ngSubmit)="signup()" [formGroup]="newclassform">
       <div class="input-row">
         <ion-item no-lines class="input-item input-controls">
-          <ion-label floating>Name of Class</ion-label>
+          <ion-label floating>Your Name</ion-label>
           <ion-input type="text" [(ngModel)]="classData.name" formControlName="name" [class.error-input]="!newclassform.controls.name.valid && newclassform.controls.name.dirty"></ion-input>
         </ion-item>
         <ion-item class="input-item" no-lines *ngIf="( newclassform.get('name').hasError('minlength') || newclassform.get('name').hasError('maxlength') ||newclassform.get('name').hasError('pattern') ||newclassform.get('name').hasError('required') ) && newclassform.get('name').touched">

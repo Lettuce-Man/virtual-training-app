@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core'
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { NavController, AlertController } from 'ionic-angular'
+import { NavController, AlertController, MenuController } from 'ionic-angular'
 import { TraineeMyClass, TraineeClassDiscover, MyclassesService} from '../../../trainee';
 import {UserService} from '../../../user';
 import { TrainerClassDiscover } from '../../../trainer';
@@ -14,11 +14,13 @@ Signin - Page to log a user into the application
 */
 export class Signin implements OnInit {
   signupform: FormGroup;
+  userData = { 
+    "password": "", 
+    "email": "" , 
+    "type": false
+  };
 
-  //TODO: This is not taking data from the form, it is the data that gets put in the form
-  userData = { "password": "Swoleman1", "email": "stlstrengthacademy@gmail.com" , "type": 1};
-
-  constructor(public navCtrl: NavController,private userService:UserService, private alertCtrl: AlertController, private myclassesService:MyclassesService) {
+  constructor(public navCtrl: NavController, public menuCtrl: MenuController, private userService:UserService, private alertCtrl: AlertController, private myclassesService:MyclassesService) {
   }
 
   ngOnInit() {
@@ -27,6 +29,7 @@ export class Signin implements OnInit {
     this.signupform = new FormGroup({
       password: new FormControl('', [Validators.required]),
       email: new FormControl('', [Validators.required]),
+      trainerCheck: new FormControl('', [Validators.required])
     });
   }
 
@@ -40,16 +43,23 @@ export class Signin implements OnInit {
         //Business logic. If the user doesn't have any classes registered
         //Then send them to the discover to start. Otherwise make them land
         //on their my classes page
-        if(this.userData.type == 0) {
+        if(this.userData.type == false) {
           if(this.myclassesService.getMyclasses().length > 0){
             this.navCtrl.setRoot(TraineeMyClass,  { 'user': user });
+            this.menuCtrl.enable(true, 'trainee');
+            this.menuCtrl.enable(false, 'trainer');
           }
           else {
             this.navCtrl.setRoot(TraineeClassDiscover,  { 'user': user });
+            this.menuCtrl.enable(true, 'trainee');
+            this.menuCtrl.enable(false, 'trainer');
           }
         }
         else {
           this.navCtrl.setRoot(TrainerClassDiscover);
+          this.menuCtrl.enable(true, 'trainer');
+          this.menuCtrl.enable(false, 'trainee');
+          
         }
       })
       .catch(err => {

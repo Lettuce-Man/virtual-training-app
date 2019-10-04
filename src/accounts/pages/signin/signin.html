@@ -33,6 +33,15 @@
           </div>
         </ion-item>
       </div>
+
+      <div class = "input-row">
+        <ion-item class="input-item" no lines>
+          <ion-label>I am a trainer</ion-label>
+          <ion-checkbox slot="end" [(ngModel)]="userData.type" formControlName="trainerCheck">
+          </ion-checkbox>
+        </ion-item>
+      </div>
+
       <div class="row-signup">
           <button class="login-btn" type="submit" ion-button>Log In</button>
       </div>

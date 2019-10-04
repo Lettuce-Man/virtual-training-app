@@ -1,6 +1,6 @@
 import { Component, OnInit} from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { NavController, AlertController } from 'ionic-angular';
+import { NavController, AlertController, MenuController } from 'ionic-angular';
 import { TraineeClassDiscover } from '../../../trainee';
 import {UserService} from '../../../user';
 import { Signin } from '../signin/signin';
@@ -10,7 +10,7 @@ export class SignUpModel {
   email: string;
   password: string;
   passwordConfirm:string;
-  type: 0;
+  type: false;
 }
 
 @Component({
@@ -23,9 +23,9 @@ Signup - Page that does the new user creation.
 export class Signup implements OnInit{
 
   public signupform: FormGroup;
-  public userData: SignUpModel = { "name": "", "password": "","passwordConfirm": "", "email": "", "type": 0};
+  public userData: SignUpModel = { "name": "", "password": "","passwordConfirm": "", "email": "", "type": false};
 
-  constructor(private navCtrl: NavController,private alertCtrl: AlertController, private userService:UserService) {
+  constructor(private navCtrl: NavController,private alertCtrl: AlertController, private userService:UserService, private menuCtrl: MenuController) {
   }
 
   ngOnInit() {
@@ -79,6 +79,8 @@ export class Signup implements OnInit{
     this.userService.signUp(this.userData.name, this.userData.email, this.userData.password, this.userData.type)
       .then(user => {
         this.navCtrl.setRoot(TraineeClassDiscover);
+        this.menuCtrl.enable(true, 'trainee');
+        this.menuCtrl.enable(false, 'trainer');
       })
       .catch(err => {
           this.alertCtrl.create({

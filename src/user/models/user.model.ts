@@ -1,5 +1,5 @@
 export interface UserModel {
-  type:number,
+  type:boolean,
   name:string,
   email: string,
   settings:{
