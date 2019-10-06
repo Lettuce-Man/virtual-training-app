@@ -14,13 +14,13 @@
       <div class="input-row">
         <ion-item no-lines class="input-item input-controls">
           <ion-label floating>Name of Class</ion-label>
-          <ion-input type="text" [(ngModel)]="classData.name" formControlName="name" [class.error-input]="!newclassform.controls.name.valid && newclassform.controls.name.dirty"></ion-input>
+          <ion-input type="text" [(ngModel)]="classData.title" formControlName="title" [class.error-input]="!newclassform.controls.title.valid && newclassform.controls.title.dirty"></ion-input>
         </ion-item>
-        <ion-item class="input-item" no-lines *ngIf="( newclassform.get('name').hasError('minlength') || newclassform.get('name').hasError('maxlength') ||newclassform.get('name').hasError('pattern') ||newclassform.get('name').hasError('required') ) && newclassform.get('name').touched">
-          <div class="error-text" *ngIf="newclassform.get('name').hasError('required') && newclassform.get('name').touched">
+        <ion-item class="input-item" no-lines *ngIf="( newclassform.get('title').hasError('minlength') || newclassform.get('title').hasError('maxlength') ||newclassform.get('title').hasError('pattern') ||newclassform.get('title').hasError('required') ) && newclassform.get('title').touched">
+          <div class="error-text" *ngIf="newclassform.get('title').hasError('required') && newclassform.get('title').touched">
             *Required field
           </div>
-          <div class="error-text" *ngIf="newclassform.get('name').hasError('maxlength') && newclassform.get('name').touched">
+          <div class="error-text" *ngIf="newclassform.get('title').hasError('maxlength') && newclassform.get('title').touched">
             <ion-icon name="alert"></ion-icon>Maximum 50 characters
           </div>
         </ion-item>

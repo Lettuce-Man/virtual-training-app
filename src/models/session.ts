@@ -6,7 +6,7 @@ export class Session {
 		public id: number,
 		public title: string,
 		public description: string,
-		public equipment: string[],
+		public equipment: string,
 		public image: string,
 		public trainer: Trainer,
 		public targets: Target[],

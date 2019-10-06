@@ -89,7 +89,6 @@ export class UserService {
   */
   public signUp(name: string, email:string, password:string, type:boolean):Promise<UserModel>{
     return new Promise((resolve, reject) => {
-      //TODO: this is just used for MOCK data, remove when api implemented
       this.userData.push({name: name, email:email, password:password, type:type})
       if(type == false) {
         this.currentUser = this.createTraineeModel(name, email);

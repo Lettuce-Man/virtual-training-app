@@ -15,9 +15,9 @@ Signin - Page to log a user into the application
 export class Signin implements OnInit {
   signupform: FormGroup;
   userData = { 
-    "password": "", 
-    "email": "" , 
-    "type": false
+    "password": "Swoleman1", 
+    "email": "stlstrengthacademy@gmail.com" , 
+    "type": true
   };
 
   constructor(public navCtrl: NavController, public menuCtrl: MenuController, private userService:UserService, private alertCtrl: AlertController, private myclassesService:MyclassesService) {
