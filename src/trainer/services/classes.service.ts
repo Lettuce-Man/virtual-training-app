@@ -87,6 +87,11 @@ export class ClassesService {
       targets.push({areaType: 'shoulders', displayName: 'Shoulders'});
     }
     this.classes.push(newClass);
+    for(let x = 0; x < this.classes.length; x++){
+      this.classes[x].id = x;
+      this.classes[x].registeredstudents = [];
+      this.classes[x].zoom = "https://zoom.us/j/5514005419";
+    }
     return new Promise((resolve, reject) => {
       return resolve(newClass);
     });

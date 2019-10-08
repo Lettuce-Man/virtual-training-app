@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { TraineeMyClass } from "../trainee-my-class/trainee-my-class";
-import { ClassesService } from '../../services/classes.service';
-import { MyclassesService } from '../../services/myclasses.service';
+import { ClassesService } from '../../../trainer/services/classes.service';
+import { MyclassesService } from '../../../trainer/services/myclasses.service';
 import { AlertController } from 'ionic-angular';
 import { ToastController } from 'ionic-angular';
 import { Session } from '../../../models/session';
@@ -22,17 +22,7 @@ export class TraineeClassDetails {
     let id = this.navParams.data;
     this.session = this.classesservice.getClass(id);
     this.isUserRegistered = this.myclassesService.isRegistered(this.session.id);
-
-    //TODO this is a hack to add more properties to the model and can be removed once a proper model is pulled from an API
-    //Can also just add these to every class in the data/class-data.ts as well
-    for (let i = 0; i < this.session.equipment.length; i++) {
-      if (i === this.session.equipment.length - 1) {
-        this.equipmentStr += this.session.equipment[i];
-      }
-      else {
-        this.equipmentStr += this.session.equipment[i] + ", ";
-      }
-    }
+    this.equipmentStr = this.session.equipment;
   }
 
   onGoBack() {

@@ -76,9 +76,7 @@
 	<ion-grid class="details-footer">
 		<ion-row>
 			<ion-col col-12>
-				<!-- If we have not registered -->
-				<button class="button-register" *ngIf="isUserRegistered === false" block ion-button (click)="showConfirmRegister()">Register</button>
-				<button class="button-join" *ngIf="isUserRegistered === true" block ion-button (click)="openZoomModal()">Join Live Class</button>
+				<button class="button-join" block ion-button (click)="openZoomModal()">Begin Live Class</button>
 			</ion-col>
 		</ion-row>
 	</ion-grid>

@@ -41,7 +41,7 @@ export default [
         id: 2,
         title: 'Muscle Builder I',
         description: 'Work out those back muscles with high intensity exercise and short rest periods. Classes will be held from 8:00pm to 8:40pm on Mondays, Wednesdays, and Fridays.',
-        equipment: 'Dumbbells, TRX',
+        equipment: "Dumbbells, TRX",
         image: "assets/imgs/class2.png",
         trainer:{
           image:'assets/imgs/trainer2.png',
@@ -79,7 +79,7 @@ export default [
         id: 3,
         title: 'Intro to Yoga',
         description: 'Start your day by grounding yourself through this biweekly yoga session. Learn different postures to help your body and mind relax. Classes will be held from 9:00am to 10:15am on Sundays and Thursdays.',
-        equipment: 'Mat, Blocks',
+        equipment: "Mat, Blocks",
         image: "assets/imgs/class3.png",
         trainer:{
           image:'assets/imgs/trainer3.png',
@@ -113,7 +113,7 @@ export default [
         id: 4,
         title: 'Cardio Blast',
         description: 'End your day with high intensity cardio bursts that will strengthen and tone your abs and legs. Classes wil be held from 10:00pm to 11:15pm five days a week (Sundays, Mondays, Wednesdays, Fridays and Saturdays).',
-        equipment: 'Resistance Band, Mat',
+        equipment: "Resistance Band, Mat",
         image: "assets/imgs/class4.png",
         trainer:{
           image:'assets/imgs/trainer4.png',

@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core'
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { NavController, AlertController, MenuController } from 'ionic-angular'
-import { TraineeMyClass, TraineeClassDiscover, MyclassesService} from '../../../trainee';
+import { TraineeMyClass, TraineeClassDiscover} from '../../../trainee';
+import {MyclassesService} from '../../../trainer/services/myclasses.service';
 import {UserService} from '../../../user';
 import { TrainerClassDiscover } from '../../../trainer';
 

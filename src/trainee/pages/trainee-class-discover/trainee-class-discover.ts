@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NavController } from "ionic-angular";
 import {TraineeClassDetails} from "../trainee-class-details/trainee-class-details";
-import {ClassesService} from "../../services/classes.service";
+import {ClassesService} from "../../../trainer/services/classes.service";
 
 @Component({
   selector: 'trainee-class-discover',

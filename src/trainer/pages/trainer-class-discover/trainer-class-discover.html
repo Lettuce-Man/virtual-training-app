@@ -5,7 +5,7 @@
   <ion-content class="class-discover-content">
 
     <div class="class-list">
-    <ion-list class="class" (click)="viewClass(class)" *ngFor="let class of allClasses">
+    <ion-list class="class" (click)="viewClass(class)" *ngFor="let class of myClasses">
       <class-summary-component  [classModel]="class" [showBackButton]="false" [showLevel]="true" [view]="'detail'"></class-summary-component>
     </ion-list >
     </div>

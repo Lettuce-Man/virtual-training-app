@@ -1,6 +1,6 @@
 import { Component, OnInit} from '@angular/core';
 import { NavController } from "ionic-angular";
-import {MyclassesService} from '../../services/myclasses.service';
+import {MyclassesService} from '../../../trainer/services/myclasses.service';
 import {TraineeClassDetails} from "../trainee-class-details/trainee-class-details";
 
 @Component({

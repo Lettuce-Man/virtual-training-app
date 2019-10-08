@@ -1,0 +1,115 @@
+.card-background-content {
+
+  .class-list {
+    padding-top: 30px;
+
+    .class {
+      padding-left: 10px;
+      padding-right: 10px;
+      margin-bottom: 0px;
+
+      .class-simple {
+        //override the height of the common component in this view
+        height:190px;
+        .time{
+          padding-top:40px;
+        }
+        .title{
+          padding-top:35px;
+          font-size: 20px;
+        }
+      }
+    }
+
+  }
+}
+
+.class-details-content {
+
+	.toast-container {
+		background-color: white;
+		color: black;
+	}
+	.class-details {
+		//override the height of the common component in this view
+		height:260px;
+		.title{
+			padding-top:25px;
+		}
+	}
+
+	.details {
+		padding-top: 0px;
+		padding-bottom: 5px;
+
+		.title {
+			font-size: 20px;
+			padding-bottom: 20px;
+			text-align: center;
+		}
+		.contents {
+			padding-bottom: 20px;
+			text-align: center;
+
+			.dumbbell {
+				height: 25px;//fit for smallest screen size
+			}
+		}
+	}
+
+	.trainer {
+		padding-bottom: 5px;
+
+		.image {
+			padding-left: 25px;
+			padding-right: 30px;
+		}
+		.contents {
+			font-size: 10px;
+
+			p {
+				margin: 2px;
+				font-size: 12px;
+			}
+			.name{
+				font-weight: bold;
+				font-size: 15px;
+			}
+		}
+	}
+
+	.target {
+		padding-left: 0px;//needed because there is a default padding and there is an inner row so we are doubling up.
+		padding-bottom: 5px;
+
+		.title {
+			font-size: 20px;
+		}
+		.contents {
+			padding-bottom: 20px;
+			white-space: normal;
+		}
+		.name {
+			text-align: center;
+		}
+	}
+
+	.description {
+		padding-bottom: 5px;
+	}
+
+
+}
+.details-footer{
+	.button-register{
+		background-color: white;
+		border-width:1px;
+		border-style: solid;
+		border-color: #FC3F1B;
+		color:#FC3F1B;
+	}
+	.button-register:hover {
+		background-color: white !important;
+	}
+}
+

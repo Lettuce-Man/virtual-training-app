@@ -1,0 +1,34 @@
+<ion-header>
+  <nav-menu-component [title]="'My Profile'"></nav-menu-component>
+</ion-header>
+
+<ion-content class="card-background-content">
+
+  <!-- if user has no registered classes -->
+	<div>
+		<ion-grid>
+		  <ion-row>
+		    <ion-col col-12>You have not yet customized your profile. Please begin by pressing "Edit" in the top right corner.</ion-col>
+		  </ion-row>
+
+		</ion-grid>
+	</div>
+  <!-- if user has registered classes > //TODO: Edit to show profile data instead of class
+	<div *ngIf="allClasses.length > 0">
+    <div class="class-details-content">
+      <ion-row class="trainer">
+			<ion-col col-auto class="image">
+				<img [src]="session.trainer.image" width="80" height="80">
+
+			</ion-col>
+			<ion-col col-auto class="contents">
+				<p class="name">{{ session.trainer.name }}</p>
+				<p>{{ session.trainer.description }}</p>
+				<p>{{ session.trainer.experience }}</p>
+				<p>{{ session.trainer.specialization }}</p>
+			</ion-col>
+		</ion-row>
+    </div>
+	</div-->
+
+</ion-content>
