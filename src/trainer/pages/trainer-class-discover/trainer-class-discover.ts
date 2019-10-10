@@ -16,7 +16,7 @@ export class TrainerClassDiscover implements OnInit {
   constructor(private navCtrl: NavController, private classesService:ClassesService) {
     let allClasses = this.classesService.getClasses();
     for (let i = 0; i < allClasses.length; i++) { 
-      if(allClasses[i].id >= 4) { //TODO: This is currently a hack Establish trainer-id this can be set to after profile model is created (possibly integrate with existing trainer model?)
+      if(allClasses[i].trainer.id == 4) { //Will only return Nathan's classes (slightly hacky)
         this.myClasses.push(allClasses[i]);
       }
     }

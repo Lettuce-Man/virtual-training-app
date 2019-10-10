@@ -4,10 +4,21 @@
 
   <ion-content class="class-discover-content">
 
-    <div class="class-list">
-    <ion-list class="class" (click)="viewClass(class)" *ngFor="let class of myClasses">
-      <class-summary-component  [classModel]="class" [showBackButton]="false" [showLevel]="true" [view]="'detail'"></class-summary-component>
-    </ion-list >
+    <div *ngIf = "myClasses.length == 0">
+      <ion-grid>
+        <ion-row>
+          <ion-col col-12>You don't have any classes. Create your first class by pressing "+" in the upper right corner!</ion-col>
+        </ion-row>
+      
+      </ion-grid>
     </div>
+
+    <div *ngIf = "myClasses.length > 0">
+      <div class="class-list">
+      <ion-list class="class" (click)="viewClass(class)" *ngFor="let class of myClasses">
+        <class-summary-component  [classModel]="class" [showBackButton]="false" [showLevel]="true" [view]="'detail'"></class-summary-component>
+      </ion-list >
+      </div>
+   </div>
 
   </ion-content>

@@ -3,8 +3,8 @@ import { Injectable } from '@angular/core';
 import classesData from '../data/class-data';
 import {MyclassesService} from'./myclasses.service';
 import { Session } from '../../models/session';
-import { Trainer } from '../../models/trainer';
 import { Target } from '../../models/target';
+import { TrainerService } from './trainer.service';
 
 //ClassesService - resopnsible for maintaining a list of all possible classes a user can browse
 @Injectable()
@@ -12,7 +12,7 @@ export class ClassesService {
 
   private classes: Session[];
 
-  constructor(private myclasses: MyclassesService) {
+  constructor(private myclasses: MyclassesService, private trainerService: TrainerService) {
     //TODO: Directly connect this to create classes page
     //Create class model based on user.model
     //See user.service.ts for example
@@ -29,6 +29,13 @@ export class ClassesService {
   //getClasses - gets a full list of classes
   public getClasses():any{
     return this.classes;
+  }
+
+  public removeClass(session: Session) {
+    const isIndex = this.classes.indexOf(session, 0)
+    if (isIndex > -1) {
+      this.classes.splice(isIndex, 1);
+    }
   }
 
   //addClass - adds a class to the overall list of classes
@@ -55,13 +62,7 @@ export class ClassesService {
     price: string, 
     day: string): Promise<Session>{
     var targets: Target[] = [];
-    let newClass = new Session(id, title, description, equipment, "assets/imgs/class2.png", {
-      image:'assets/imgs/trainer2.png',
-      name:'Nathan Williams',
-      description:'Very swole boi',
-      experience:'Has been swole for very long time',
-      specialization:'Can lift very heavy things for you'
-    }, targets, calories, startdate, enddate, starttime, endtime, level, price, day, "https://zoom.us/j/5514005419", []);
+    let newClass = new Session(id, title, description, equipment, "assets/imgs/class2.png", this.trainerService.getTrainer(4), targets, calories, startdate, enddate, starttime, endtime, level, price, day, "https://zoom.us/j/5514005419", []);
     if(arms == true) {
       targets.push({areaType: 'arms', displayName: 'Arms'});
     }

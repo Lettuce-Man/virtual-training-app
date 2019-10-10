@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import userData from '../data/user-data';
 import { UserModel } from '../models/user.model';
 import { type } from 'os';
+import { Trainer } from '../../models/trainer';
 
 @Injectable()
 /*
@@ -12,6 +13,7 @@ import { type } from 'os';
 export class UserService {
 
   private currentUser: UserModel;
+  private trainerData: Trainer;
 
   //TODO: this is just used for MOCK data, remove when api implemented
   private userData:{name:string,email:string,password:string,type:boolean}[];
@@ -44,6 +46,10 @@ export class UserService {
         acknowledgeZoomNotification:false
       }
     }
+  }
+
+  public getTrainerProfile():Trainer {
+    return this.trainerData;
   }
 
   /*

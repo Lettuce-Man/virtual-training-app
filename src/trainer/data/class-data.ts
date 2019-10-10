@@ -6,6 +6,7 @@ export default [
         equipment: "Yoga blocks, Mat",
         image: "assets/imgs/class1.png",
         trainer:{
+          id: 0,
           image:'assets/imgs/trainer1.png',
           name:'Amanda Burns',
           description:'ACE certified personal trainer',
@@ -44,6 +45,7 @@ export default [
         equipment: "Dumbbells, TRX",
         image: "assets/imgs/class2.png",
         trainer:{
+          id: 1,
           image:'assets/imgs/trainer2.png',
           name:'Patrick Kono',
           description:'ACE certified personal trainer',
@@ -82,6 +84,7 @@ export default [
         equipment: "Mat, Blocks",
         image: "assets/imgs/class3.png",
         trainer:{
+          id: 2,
           image:'assets/imgs/trainer3.png',
           name:'Meghan Taylor',
           description:'Yoga Instructor Certification',
@@ -116,6 +119,7 @@ export default [
         equipment: "Resistance Band, Mat",
         image: "assets/imgs/class4.png",
         trainer:{
+          id: 3,
           image:'assets/imgs/trainer4.png',
           name:'Rachel Liu',
           description:'ACE certified personal trainer',

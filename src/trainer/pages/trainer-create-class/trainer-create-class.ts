@@ -44,6 +44,7 @@ export class CreateClass implements OnInit{
   public trainer: Trainer;
   public targets: Target[];
   public newClass: Session;
+  public value: String;
 
   public imageURI: any;
   public imageFileName: any;
@@ -53,9 +54,9 @@ export class CreateClass implements OnInit{
     "title": "Get Swole with Nathan",
     "description": "Get swole!", 
     "equipment": "Weights and such",
-    "arms": true,
+    "arms": false,
     "chest": false,
-    "back": true,
+    "back": false,
     "glutes": false,
     "core": false,
     "calves": false,
@@ -67,7 +68,7 @@ export class CreateClass implements OnInit{
     "starttime": "8AM",
     "endtime": "5PM",
     "level": "3",
-    "price": "29",
+    "price": "$29",
     "days": "Mon, Tues, Thurs",
   };
 
@@ -110,6 +111,38 @@ export class CreateClass implements OnInit{
   */
   hasUppercase(testString){
     return /[A-Z]/.test(testString);
+  }
+
+  /*
+  isChecked - helper function to determine if options have been checked
+  */
+  isChecked(value) {
+    for(let i = 0; i < value.length; i++) {
+      if (value[i] == 'arms') {
+        this.classData.arms = true;
+      }
+      if (value[i] == 'chest') {
+        this.classData.chest = true;
+      }
+      if (value[i] == 'back') {
+        this.classData.back = true;
+      }
+      if (value[i] == 'glutes') {
+        this.classData.glutes = true;
+      }
+      if (value[i] == 'core') {
+        this.classData.core = true;
+      }
+      if (value[i] == 'calves') {
+        this.classData.calves = true;
+      }
+      if (value[i] == 'legs') {
+        this.classData.legs = true;
+      }
+      if (value[i] == 'shoulders') {
+        this.classData.shoulders = true;
+      }
+    }
   }
 
   /*

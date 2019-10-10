@@ -4,31 +4,39 @@
 
 <ion-content class="card-background-content">
 
-  <!-- if user has no registered classes -->
-	<div>
+  <!-- if user has no data in their profile -->
+  <div *ngIf = "profileUpdated == false">
 		<ion-grid>
 		  <ion-row>
-		    <ion-col col-12>You have not yet customized your profile. Please begin by pressing "Edit" in the top right corner.</ion-col>
+			
+			<ion-col col-12>You have not yet customized your profile. Please begin by pressing "Edit Profile" in the top right corner.</ion-col>
 		  </ion-row>
 
 		</ion-grid>
 	</div>
-  <!-- if user has registered classes > //TODO: Edit to show profile data instead of class
-	<div *ngIf="allClasses.length > 0">
+  <!-- if user has updated their profile --> 
+	<div *ngIf="profileUpdated == true">
     <div class="class-details-content">
+		<ion-row>
+			
+			<ion-col col-12>This is how your profile will look on classes you create:</ion-col>
+		</ion-row>
       <ion-row class="trainer">
 			<ion-col col-auto class="image">
-				<img [src]="session.trainer.image" width="80" height="80">
+				<img [src]="trainerData.image" width="80" height="80">
 
 			</ion-col>
 			<ion-col col-auto class="contents">
-				<p class="name">{{ session.trainer.name }}</p>
-				<p>{{ session.trainer.description }}</p>
-				<p>{{ session.trainer.experience }}</p>
-				<p>{{ session.trainer.specialization }}</p>
+				<p class="name">{{ trainerData.name }}</p>
+				<p>{{ trainerData.description }}</p>
+				<p>{{ trainerData.experience }}</p>
+				<p>{{ trainerData.specialization }}</p>
+			</ion-col>
+			<ion-col col-auto class = "contents">
+				<button (click) = "returntoYourClasses()" ion-button>Return to Your Classes</button>
 			</ion-col>
 		</ion-row>
     </div>
-	</div-->
+	</div>
 
 </ion-content>

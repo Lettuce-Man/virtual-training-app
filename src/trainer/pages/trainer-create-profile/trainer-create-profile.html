@@ -28,6 +28,21 @@
 
       <div class="input-row">
         <ion-item no-lines class="input-item input-controls">
+          <ion-label floating>Quick Bio</ion-label>
+          <ion-input type="text" [(ngModel)]="profileData.description" formControlName="description" [class.error-input]="!newclassform.controls.description.valid && newclassform.controls.description.dirty"></ion-input>
+        </ion-item>
+        <ion-item class="input-item" no-lines *ngIf="( newclassform.get('description').hasError('minlength') || newclassform.get('description').hasError('maxlength') ||newclassform.get('description').hasError('pattern') ||newclassform.get('description').hasError('required') ) && newclassform.get('description').touched">
+          <div class="error-text" *ngIf="newclassform.get('description').hasError('required') && newclassform.get('description').touched">
+            *Required field
+          </div>
+          <div class="error-text" *ngIf="newclassform.get('description').hasError('maxlength') && newclassform.get('description').touched">
+            <ion-icon name="alert"></ion-icon>Maximum 250 characters
+          </div>
+        </ion-item>
+      </div>
+
+      <div class="input-row">
+        <ion-item no-lines class="input-item input-controls">
           <ion-label floating>Your Experience</ion-label>
           <ion-input type="text" [(ngModel)]="profileData.experience" formControlName="experience" [class.error-input]="!newclassform.controls.experience.valid && newclassform.controls.experience.dirty"></ion-input>
         </ion-item>

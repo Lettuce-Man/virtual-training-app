@@ -61,7 +61,7 @@
         <ion-list>
             <ion-item>
                 <ion-label>Workout areas (Select)</ion-label>
-                <ion-select multiple="true">
+                <ion-select multiple="true" (ionChange) = "isChecked($event)">
                   <ion-option value="arms">Arms</ion-option>
                   <ion-option value="chest">Chest</ion-option>
                   <ion-option value="back">Back</ion-option>

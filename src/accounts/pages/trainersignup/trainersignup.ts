@@ -5,6 +5,7 @@ import { TrainerClassDiscover } from '../../../trainer';
 import { UserService } from '../../../user';
 import { Signin } from '../signin/signin';
 import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer/ngx';
+import { Landing } from '../landing/landing';
 
 export class TrainerSignUpModel {
   name: string;
@@ -83,21 +84,19 @@ export class TrainerSignup implements OnInit{
       return;
     }
 
-    this.userService.signUp(this.userData.name, this.userData.email, this.userData.password, this.userData.type)
-      .then(user => {
-        this.navCtrl.setRoot(TrainerClassDiscover);
-        this.menuCtrl.enable(true, 'trainer');
-        this.menuCtrl.enable(false, 'trainee');
-      })
-      .catch(err => {
-          this.alertCtrl.create({
-            title: 'User Information',
-            subTitle:err,
-            buttons: [{
-                text:'Dismiss'
-            }]
-          }).present();
-      });
+    const thankYou = this.alertCtrl.create({
+      title: "Thank You!",
+      message: "Thank you for your application! You will receive an email from us soon regarding its acceptance.",
+      buttons: [
+        {
+          text: "OK",
+          handler: () => {
+            this.navCtrl.setRoot(Landing);
+          }
+        }
+      ]
+    });
+    thankYou.present();
   }
 
 //TODO: Add upload method

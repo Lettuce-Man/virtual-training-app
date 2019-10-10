@@ -7,6 +7,7 @@ import { ToastController } from 'ionic-angular';
 import { Session } from '../../../models/session';
 import { Modal, ModalController, ModalOptions } from 'ionic-angular';
 import {UserService} from '../../../user';
+import { TrainerClassDiscover } from '../trainer-class-discover/trainer-class-discover';
 
 @Component({
   selector: 'trainer-class-details',
@@ -29,67 +30,30 @@ export class TrainerClassDetails {
   }
 
 	ngOnInit() {
-	}
-
-  register() {
-    let classid = this.navParams.data;
-    let userId = 123;//TODO: Mocked out for now.
-    this.classesservice.register(userId,classid);
-    this.isUserRegistered = true;
   }
-  unregister() {
-    this.myclassesService.removeMyclassesById(this.session.id);
-    this.isUserRegistered = false;
-  }
-
-  showConfirmRegister() {
-    const confirm = this.alertCtrl.create({
-      title: 'Confirm Class Registration',
-      message: 'Are you sure you want to register?',
+  
+  removeClass() {
+    const areYouSure = this.alertCtrl.create({
+      title: 'Are you sure?',
+      message: 'Are you sure you want to cancel this class? Clicking Yes will return you to the Your Classes page.',
       buttons: [
         {
-          text: 'Cancel',
+          text: 'Yes',
           handler: () => {
-            console.log('Cancel registration');
+            this.classesservice.removeClass(this.session);
+            this.navCtrl.setRoot(TrainerClassDiscover);
           }
         },
         {
-          text: 'Confirm',
+          text: 'No',
           handler: () => {
-            this.register();
-            this.presentToast();
-
           }
         }
       ]
     });
-    confirm.present();
+    areYouSure.present();
   }
 
-  presentToast() {
-    let duration: number = 7000;
-    let closedByTimeout: boolean = false;
-
-     const toast = this.toastCtrl.create({
-       message: 'Congratulations! You are registered',
-       position: "top",
-       showCloseButton: true,
-       closeButtonText: "My Sessions",
-       dismissOnPageChange: true,
-       cssClass: "custom-toast"
-     });
-
-    let timeOutHandler = setTimeout(() => { closedByTimeout = true; toast.dismiss(); }, duration);
-
-
-    toast.onDidDismiss(() => {
-      if (closedByTimeout) return;
-      clearTimeout(timeOutHandler);
-    });
-
-
-    toast.present();
-  }
   private openZoom(url:string){
     window.open(url,'_system', 'location=yes');
   }
