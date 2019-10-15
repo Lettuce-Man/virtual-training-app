@@ -51,9 +51,9 @@ export class CreateClass implements OnInit{
   public newclassform: FormGroup;
   public classData: RawClass = { 
     "id": 0,                  
-    "title": "Get Swole with Nathan",
-    "description": "Get swole!", 
-    "equipment": "Weights and such",
+    "title": "",
+    "description": "", 
+    "equipment": "",
     "arms": false,
     "chest": false,
     "back": false,
@@ -62,14 +62,14 @@ export class CreateClass implements OnInit{
     "calves": false,
     "legs": false,
     "shoulders": false,
-    "calories": "90",
-    "startdate": "March 20th, 2020",
-    "enddate": "March 20th, 2021",
-    "starttime": "8AM",
-    "endtime": "5PM",
-    "level": "3",
-    "price": "$29",
-    "days": "Mon, Tues, Thurs",
+    "calories": "",
+    "startdate": "",
+    "enddate": "",
+    "starttime": "",
+    "endtime": "",
+    "level": "",
+    "price": "",
+    "days": "",
   };
 
   constructor(private navCtrl: NavController,private alertCtrl: AlertController, private userService:UserService, private classesService:ClassesService) {
