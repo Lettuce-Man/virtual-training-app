@@ -26,7 +26,7 @@ export class UserService {
   /*
   * createUserModel - internal function to create a valid user model
   */
- private createTraineeModel(name: string, email:string):UserModel{
+ public createTraineeModel(name: string, email:string):UserModel{
   return {
     type: false, //0 for trainee
     name:name,
@@ -37,7 +37,7 @@ export class UserService {
   }
 }
 
-  private createTrainerModel(name: string, email:string):UserModel{
+  public createTrainerModel(name: string, email:string):UserModel{
     return {
       type: true, //1 for trainer
       name:name,

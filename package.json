@@ -43,6 +43,7 @@
     "@ionic/storage": "^2.0.1",
     "@types/paho-mqtt": "^1.0.3",
     "@types/zen-observable": "^0.5.3",
+    "amazon-cognito-identity-js": "^3.1.2",
     "angular": "^1.6.9",
     "ansi-styles": "^3.2.0",
     "autoprefixer": "^8.0.0",

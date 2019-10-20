@@ -5,6 +5,7 @@ import { TraineeMyClass, TraineeClassDiscover} from '../../../trainee';
 import {MyclassesService} from '../../../trainer/services/myclasses.service';
 import {UserService} from '../../../user';
 import { TrainerClassDiscover } from '../../../trainer';
+import { CognitoServiceProvider } from '../../../providers/cognito-service/cognito-service';
 
 @Component({
   selector: 'accounts-signin',
@@ -21,7 +22,7 @@ export class Signin implements OnInit {
     "type": false
   };
 
-  constructor(public navCtrl: NavController, public menuCtrl: MenuController, private userService:UserService, private alertCtrl: AlertController, private myclassesService:MyclassesService) {
+  constructor(public CognitoService: CognitoServiceProvider, public navCtrl: NavController, public menuCtrl: MenuController, private userService:UserService, private alertCtrl: AlertController, private myclassesService:MyclassesService) {
   }
 
   ngOnInit() {
@@ -37,7 +38,7 @@ export class Signin implements OnInit {
   onGoBack() {
     this.navCtrl.pop();
   }
-
+/*
   login() {
     this.userService.signIn(this.userData.email, this.userData.password, this.userData.type)
       .then(user => {
@@ -73,5 +74,26 @@ export class Signin implements OnInit {
           }).present();
       });
   }
+  */
+
+ login() {
+  this.CognitoService.authenticate(this.userData.email, this.userData.password)
+  .then(res =>{
+    console.log(res);
+    let user = this.userService.createTraineeModel("Sarah", this.userData.email);
+    this.navCtrl.setRoot(TraineeMyClass,  { 'user': user });
+    this.menuCtrl.enable(true, 'trainee');
+    this.menuCtrl.enable(false, 'trainer');
+  }, err =>{
+    console.log(err);
+    this.alertCtrl.create({
+      title: 'Sign In Error',
+      subTitle:err,
+      buttons: [{
+          text:'Dismiss'
+      }]
+    }).present();
+  });
+}
 
 }

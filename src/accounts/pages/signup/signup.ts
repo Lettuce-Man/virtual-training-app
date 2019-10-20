@@ -53,7 +53,7 @@ export class Signup implements OnInit{
 
   /*
   signup - Validate and call signup on the user service.
-  */
+  
   signup() {
     if(this.signupform.invalid === true){
       this.alertCtrl.create({
@@ -92,6 +92,9 @@ export class Signup implements OnInit{
           }).present();
       });
   }
+  */
+
+  
 
   /*
   onGoBack - Go back a screen.

@@ -15,6 +15,8 @@ import { UserModule } from '../user';
 import { TraineeModule} from '../trainee';
 import { AccountsModule } from '../accounts';
 import { TrainerModule } from '../trainer';
+import { CognitoServiceProvider } from '../providers/cognito-service/cognito-service';
+import { HttpClient, HttpHandler } from '@angular/common/http';
 
 
 @NgModule({
@@ -43,6 +45,10 @@ import { TrainerModule } from '../trainer';
     FileTransfer,
     FileTransferObject,
     File,
+    CognitoServiceProvider,
+    HttpClient,
+    HttpHandler
+    
   ]
 })
 export class AppModule {}
