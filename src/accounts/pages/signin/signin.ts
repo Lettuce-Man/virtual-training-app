@@ -77,23 +77,44 @@ export class Signin implements OnInit {
   */
 
  login() {
-  this.CognitoService.authenticate(this.userData.email, this.userData.password)
-  .then(res =>{
-    console.log(res);
-    let user = this.userService.createTraineeModel("Sarah", this.userData.email);
-    this.navCtrl.setRoot(TraineeMyClass,  { 'user': user });
-    this.menuCtrl.enable(true, 'trainee');
-    this.menuCtrl.enable(false, 'trainer');
-  }, err =>{
-    console.log(err);
-    this.alertCtrl.create({
-      title: 'Sign In Error',
-      subTitle:err,
-      buttons: [{
-          text:'Dismiss'
-      }]
-    }).present();
-  });
+   if(this.userData.type = false) {
+    this.CognitoService.authenticate(this.userData.email, this.userData.password)
+    .then(res =>{
+      console.log(res);
+      let user = this.userService.createTraineeModel("Sarah", this.userData.email);
+      this.navCtrl.setRoot(TraineeClassDiscover,  { 'user': user });
+      this.menuCtrl.enable(true, 'trainee');
+      this.menuCtrl.enable(false, 'trainer');
+    }, err =>{
+      console.log(err);
+      this.alertCtrl.create({
+        title: 'Sign In Error',
+        subTitle:err,
+        buttons: [{
+            text:'Dismiss'
+        }]
+      }).present();
+    });
+  }
+  else {
+    this.CognitoService.authenticateTrainer(this.userData.email, this.userData.password)
+    .then(res =>{
+      console.log(res);
+      let user = this.userService.createTrainerModel("Nathan", this.userData.email);
+      this.navCtrl.setRoot(TrainerClassDiscover,  { 'user': user });
+      this.menuCtrl.enable(true, 'trainer');
+      this.menuCtrl.enable(false, 'trainee');
+    }, err =>{
+      console.log(err);
+      this.alertCtrl.create({
+        title: 'Sign In Error',
+        subTitle:err,
+        buttons: [{
+            text:'Dismiss'
+        }]
+      }).present();
+    });
+  }
 }
 
 }

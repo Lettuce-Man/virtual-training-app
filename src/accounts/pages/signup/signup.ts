@@ -4,6 +4,7 @@ import { NavController, AlertController, MenuController } from 'ionic-angular';
 import { TraineeClassDiscover } from '../../../trainee';
 import {UserService} from '../../../user';
 import { Signin } from '../signin/signin';
+import { CognitoServiceProvider } from '../../../providers/cognito-service/cognito-service';
 
 export class SignUpModel {
   name: string;
@@ -25,7 +26,7 @@ export class Signup implements OnInit{
   public signupform: FormGroup;
   public userData: SignUpModel = { "name": "", "password": "","passwordConfirm": "", "email": "", "type": false};
 
-  constructor(private navCtrl: NavController,private alertCtrl: AlertController, private userService:UserService, private menuCtrl: MenuController) {
+  constructor(public CognitoService: CognitoServiceProvider, private navCtrl: NavController,private alertCtrl: AlertController, private userService:UserService, private menuCtrl: MenuController) {
   }
 
   ngOnInit() {
@@ -53,6 +54,7 @@ export class Signup implements OnInit{
 
   /*
   signup - Validate and call signup on the user service.
+  */
   
   signup() {
     if(this.signupform.invalid === true){
@@ -76,7 +78,7 @@ export class Signup implements OnInit{
       return;
     }
 
-    this.userService.signUp(this.userData.name, this.userData.email, this.userData.password, this.userData.type)
+    this.CognitoService.signUp(this.userData.email, this.userData.password)
       .then(user => {
         this.navCtrl.setRoot(TraineeClassDiscover);
         this.menuCtrl.enable(true, 'trainee');
@@ -92,7 +94,6 @@ export class Signup implements OnInit{
           }).present();
       });
   }
-  */
 
   
 
