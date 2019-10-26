@@ -1,5 +1,6 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { EmailComposer } from '@ionic-native/email-composer/ngx'
 import * as AWSCognito from "amazon-cognito-identity-js";
 
 /*
@@ -23,7 +24,7 @@ export class CognitoServiceProvider {
 
 
 
-  constructor(public http: HttpClient) {
+  constructor(public http: HttpClientModule, private emailComposer: EmailComposer) {
     console.log('Hello CognitoServiceProvider Provider');
   }
 
@@ -34,6 +35,42 @@ export class CognitoServiceProvider {
 signUp(email, password) {
   return new Promise((resolved, reject) => {
     const userPool = new AWSCognito.CognitoUserPool(this._TRAINEE_POOL_DATA);
+
+    let userAttribute = [];
+    userAttribute.push(
+      new AWSCognito.CognitoUserAttribute({ Name: "email", Value: email })
+    );
+
+    userPool.signUp(email, password, userAttribute, null, function(err, result) {
+      if (err) {
+        reject(err);
+      } else {
+        resolved(result);
+      }
+    });
+  });
+}
+
+TrainerSignUp(email, password) {
+ /* this.emailComposer.isAvailable().then((available: boolean) =>{
+    if(available) {
+
+    }
+  });
+  
+
+  let signupEmail = {
+    to: 'gmarkowitz2014@gmail.com',
+    subject: 'New FitnessLive Trainer Application',
+    body: 'Hello, this is a test.',
+    isHtml: true
+  }
+
+  this.emailComposer.open(signupEmail);
+  */
+
+  return new Promise((resolved, reject) => {
+    const userPool = new AWSCognito.CognitoUserPool(this._TRAINER_POOL_DATA);
 
     let userAttribute = [];
     userAttribute.push(

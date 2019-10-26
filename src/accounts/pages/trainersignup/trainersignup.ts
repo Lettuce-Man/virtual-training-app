@@ -6,6 +6,7 @@ import { UserService } from '../../../user';
 import { Signin } from '../signin/signin';
 import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer/ngx';
 import { Landing } from '../landing/landing';
+import { CognitoServiceProvider } from '../../../providers/cognito-service/cognito-service';
 
 export class TrainerSignUpModel {
   name: string;
@@ -32,7 +33,7 @@ export class TrainerSignup implements OnInit{
   public signupform: FormGroup;
   public userData: TrainerSignUpModel = { "name": "", "password": "","passwordConfirm": "", "email": "" , "bio": "", "prevExp": "", "qualiCert": "", "type": true};
 
-  constructor(private navCtrl: NavController,private alertCtrl: AlertController, private userService:UserService, private menuCtrl: MenuController) {
+  constructor(private CognitoService: CognitoServiceProvider, private navCtrl: NavController,private alertCtrl: AlertController, private userService:UserService, private menuCtrl: MenuController) {
   }
 
   ngOnInit() {
@@ -83,20 +84,31 @@ export class TrainerSignup implements OnInit{
       }).present();
       return;
     }
-
-    const thankYou = this.alertCtrl.create({
-      title: "Thank You!",
-      message: "Thank you for your application! You will receive an email from us soon regarding its acceptance.",
-      buttons: [
-        {
-          text: "OK",
-          handler: () => {
-            this.navCtrl.setRoot(Landing);
-          }
-        }
-      ]
-    });
-    thankYou.present();
+    this.CognitoService.TrainerSignUp(this.userData.email, this.userData.password)
+      .then(user => {
+        const thankYou = this.alertCtrl.create({
+          title: "Thank You!",
+          message: "Thank you for your application! You will receive an email from us soon regarding its acceptance.",
+          buttons: [
+            {
+              text: "OK",
+              handler: () => {
+                this.navCtrl.setRoot(Landing);
+              }
+            }
+          ]
+        });
+        thankYou.present();
+      })
+      .catch(err => {
+          this.alertCtrl.create({
+            title: 'User Information',
+            subTitle:err,
+            buttons: [{
+                text:'Dismiss'
+            }]
+          }).present();
+      });
   }
 
 //TODO: Add upload method

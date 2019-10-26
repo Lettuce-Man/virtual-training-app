@@ -31,6 +31,7 @@
     "@ionic-native/camera": "^4.7.0",
     "@ionic-native/core": "^4.11.0",
     "@ionic-native/date-picker": "^4.7.0",
+    "@ionic-native/email-composer": "^5.15.1",
     "@ionic-native/file": "^4.20.0",
     "@ionic-native/file-chooser": "^5.14.0",
     "@ionic-native/file-path": "^4.7.0",

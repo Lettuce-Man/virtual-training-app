@@ -16,7 +16,8 @@ import { TraineeModule} from '../trainee';
 import { AccountsModule } from '../accounts';
 import { TrainerModule } from '../trainer';
 import { CognitoServiceProvider } from '../providers/cognito-service/cognito-service';
-import { HttpClient, HttpHandler } from '@angular/common/http';
+import { HttpClient, HttpHandler, HttpClientModule } from '@angular/common/http';
+import { EmailComposer } from '@ionic-native/email-composer/ngx';
 
 
 @NgModule({
@@ -26,12 +27,13 @@ import { HttpClient, HttpHandler } from '@angular/common/http';
   imports: [
     BrowserModule,
     HttpModule,
+    HttpClientModule,
     IonicModule.forRoot(MyApp),
     FormsModule,
     UserModule,
     TraineeModule,
     AccountsModule,
-    TrainerModule
+    TrainerModule,
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -46,8 +48,8 @@ import { HttpClient, HttpHandler } from '@angular/common/http';
     FileTransferObject,
     File,
     CognitoServiceProvider,
-    HttpClient,
-    HttpHandler
+    HttpClientModule,
+    EmailComposer
     
   ]
 })
