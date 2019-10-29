@@ -17,7 +17,7 @@ import { AccountsModule } from '../accounts';
 import { TrainerModule } from '../trainer';
 import { CognitoServiceProvider } from '../providers/cognito-service/cognito-service';
 import { HttpClient, HttpHandler, HttpClientModule } from '@angular/common/http';
-import { EmailComposer } from '@ionic-native/email-composer/ngx';
+import { EmailComposer } from '@ionic-native/email-composer';
 
 
 @NgModule({
