@@ -77,38 +77,36 @@ export class Signin implements OnInit {
   */
 
  login() {
-   if(this.userData.type = false) {
+   if(this.userData.type == false) {
     this.CognitoService.authenticate(this.userData.email, this.userData.password)
     .then(res =>{
       console.log(res);
-      let user = this.userService.createTraineeModel("Sarah", this.userData.email);
-      this.navCtrl.setRoot(TraineeClassDiscover,  { 'user': user });
+      this.navCtrl.setRoot(TraineeClassDiscover);
       this.menuCtrl.enable(true, 'trainee');
       this.menuCtrl.enable(false, 'trainer');
     }, err =>{
       console.log(err);
       this.alertCtrl.create({
         title: 'Sign In Error',
-        subTitle:err,
+        subTitle:'Please check that your email and password are correct. If you are a trainer, make sure the "I am a trainer" box is checked.',
         buttons: [{
             text:'Dismiss'
         }]
       }).present();
     });
   }
-  else {
+  if(this.userData.type == true) {
     this.CognitoService.authenticateTrainer(this.userData.email, this.userData.password)
     .then(res =>{
       console.log(res);
-      let user = this.userService.createTrainerModel("Nathan", this.userData.email);
-      this.navCtrl.setRoot(TrainerClassDiscover,  { 'user': user });
+      this.navCtrl.setRoot(TrainerClassDiscover);
       this.menuCtrl.enable(true, 'trainer');
       this.menuCtrl.enable(false, 'trainee');
     }, err =>{
       console.log(err);
       this.alertCtrl.create({
         title: 'Sign In Error',
-        subTitle:err,
+        subTitle:'Please check that your email and password are correct.',
         buttons: [{
             text:'Dismiss'
         }]
