@@ -18,7 +18,7 @@ import { TrainerModule } from '../trainer';
 import { CognitoServiceProvider } from '../providers/cognito-service/cognito-service';
 import { HttpClient, HttpHandler, HttpClientModule } from '@angular/common/http';
 import { EmailComposer } from '@ionic-native/email-composer';
-import { S3ServiceProvider } from '../providers/s3-service/s3-service';
+import { AppSyncProvider } from '../providers/appsync-service/appsync-service';
 
 
 @NgModule({
@@ -51,7 +51,7 @@ import { S3ServiceProvider } from '../providers/s3-service/s3-service';
     CognitoServiceProvider,
     HttpClientModule,
     EmailComposer,
-    S3ServiceProvider
+    AppSyncProvider
     
   ]
 })

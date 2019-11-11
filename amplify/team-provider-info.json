@@ -1,0 +1,14 @@
+{
+    "windows": {
+        "awscloudformation": {
+            "AuthRoleName": "amplify-virtual-training-app-windows-140115-authRole",
+            "UnauthRoleArn": "arn:aws:iam::306021488478:role/amplify-virtual-training-app-windows-140115-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::306021488478:role/amplify-virtual-training-app-windows-140115-authRole",
+            "Region": "us-east-2",
+            "DeploymentBucketName": "amplify-virtual-training-app-windows-140115-deployment",
+            "UnauthRoleName": "amplify-virtual-training-app-windows-140115-unauthRole",
+            "StackName": "amplify-virtual-training-app-windows-140115",
+            "StackId": "arn:aws:cloudformation:us-east-2:306021488478:stack/amplify-virtual-training-app-windows-140115/04477270-04be-11ea-974d-0247ef85be9c"
+        }
+    }
+}
