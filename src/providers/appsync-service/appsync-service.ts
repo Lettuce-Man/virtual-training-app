@@ -1,24 +1,44 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import awsconfig from '../../aws-exports';
-import Amplify, { API } from 'aws-amplify';
-Amplify.configure(awsconfig);
-import * as queries from '../../graphql/queries';
-import * as mutations from '../../graphql/mutations';
-import * as subscriptions from '../../graphql/subscriptions';
+import AWSAppSyncClient, { AUTH_TYPE } from 'aws-appsync';
+import gql from 'graphql-tag';
+import { getFitnessLiveClasses, listFitnessLiveClasses } from '../../graphql/queries'
+import { Session } from '../../models/session';
 
 
-/*
-  Generated class for the S3ServiceProvider provider.
+const client = new AWSAppSyncClient({
+  url: awsconfig.aws_appsync_graphqlEndpoint,
+  region: awsconfig.aws_appsync_region,
+  auth: {
+    type: AUTH_TYPE.API_KEY, // or type: awsconfig.aws_appsync_authenticationType,
+    apiKey: awsconfig.aws_appsync_apiKey,
+  }
+});
 
-  See https://angular.io/guide/dependency-injection for more info on providers
-  and Angular DI.
-*/
+
 @Injectable()
 export class AppSyncProvider {
 
+  private classes: Session[];
+
   constructor(public http: HttpClient) {
     
+  }
+
+  /*getAllClasses() {
+    client.query<{ rawData: [] }>({
+      query: gql(getFitnessLiveClasses)
+    }).then(({ data: { rawData } }) => {
+      this.classes = rawData;
+      //let newSession = new Session(rawData[0], rawData[0], rawData[0], rawData[0], rawData[0], rawData[0], rawData[0], rawData[0], rawData[0], rawData[0], rawData[0], rawData[0], rawData[0], rawData[0], rawData[0], rawData[0], rawData[0]);
+    });
+   
+  }
+  */
+
+  syncClasses() {
+    return this.classes;
   }
 
 }
