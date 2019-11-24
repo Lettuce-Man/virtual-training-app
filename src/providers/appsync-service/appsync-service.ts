@@ -20,25 +20,15 @@ const client = new AWSAppSyncClient({
 @Injectable()
 export class AppSyncProvider {
 
-  private classes: Session[];
+  private classes;
 
   constructor(public http: HttpClient) {
     
   }
 
-  /*getAllClasses() {
-    client.query<{ rawData: [] }>({
-      query: gql(getFitnessLiveClasses)
-    }).then(({ data: { rawData } }) => {
-      this.classes = rawData;
-      //let newSession = new Session(rawData[0], rawData[0], rawData[0], rawData[0], rawData[0], rawData[0], rawData[0], rawData[0], rawData[0], rawData[0], rawData[0], rawData[0], rawData[0], rawData[0], rawData[0], rawData[0], rawData[0]);
-    });
-   
+  getClasses() {
+    //TODO: Incomplete
+    //Using API test mutation
+  
   }
-  */
-
-  syncClasses() {
-    return this.classes;
-  }
-
 }
