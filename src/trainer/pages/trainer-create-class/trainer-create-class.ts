@@ -3,11 +3,14 @@ import { FormControl, FormGroup, Validators, MaxLengthValidator } from '@angular
 import { NavController, AlertController} from 'ionic-angular';
 import { TrainerClassDiscover } from '../../../trainer';
 import { UserService } from '../../../user';
+import createClass from '../../../graphql/mutations/createClass'
 import { Time, WeekDay } from '@angular/common';
+import newClass from '../../types/newClass'
 import { Session } from '../../../models/session';
 import { ClassesService } from '../../services/classes.service';
 import { Trainer } from '../../../models/trainer';
 import { Target } from '../../../models/target';
+import { AppSyncProvider } from '../../../providers/appsync-service/appsync-service'
 
 export class RawClass {
   id: number;
@@ -72,7 +75,7 @@ export class CreateClass implements OnInit{
     "days": "",
   };
 
-  constructor(private navCtrl: NavController,private alertCtrl: AlertController, private userService:UserService, private classesService:ClassesService) {
+  constructor(private appSync: AppSyncProvider, private navCtrl: NavController,private alertCtrl: AlertController, private userService:UserService, private classesService:ClassesService) {
   }
 
   ngOnInit() {
@@ -182,9 +185,24 @@ export class CreateClass implements OnInit{
           }]
         }).present();
       });
-    
+
+      const id = 5;
+      const newClass: newClass = {
+        id: this.classData.id,
+        title: this.classData.title,
+        description: this.classData.description
+      };
+      this.appSync.hc().then(client => {
+        client.mutate({
+          mutation: createClass,
+          variables: newClass
+        })
+      })
 
   }
+    
+
+  
   
 
   /*
