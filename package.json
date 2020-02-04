@@ -27,6 +27,7 @@
     "@angular/platform-server": "^5.2.6",
     "@angular/router": "^5.2.6",
     "@angular/tsc-wrapped": "^4.4.6",
+    "@aws-sdk/client-appsync-node": "0.1.0-preview.2",
     "@firebase/polyfill": "^0.1.5",
     "@ionic-native/camera": "^4.7.0",
     "@ionic-native/core": "^4.11.0",
